@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vibe Coding 知识库</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/css/theme-simple-dark.css">
+  <style>
+    :root {
+      --base-font-size: 16px;
+      --theme-color: #42b983;
+      --heading-color: #42b983;
+      --link-color: #42b983;
+      --sidebar-name-margin: 2rem 0 0 0;
+      --sidebar-name-font-size: 1.5rem;
+      --sidebar-nav-link-font-weight: 400;
+      --sidebar-nav-link-color: #c0c0c0;
+      --sidebar-nav-link-color--active: #42b983;
+      --sidebar-nav-link-border-color--active: #42b983;
+      --sidebar-nav-pagelink-background-image--active: linear-gradient(90deg, #42b983 0%, #42b983 100%);
+      --sidebar-nav-pagelink-background-image--collapse: linear-gradient(90deg, #42b983 0%, #42b983 100%);
+      --sidebar-nav-pagelink-background-image--loaded: linear-gradient(90deg, #42b983 0%, #42b983 100%);
+      --code-inline-background: rgba(66, 185, 131, 0.1);
+      --code-theme-background: #1e1e1e;
+      --blockquote-background: rgba(66, 185, 131, 0.05);
+      --blockquote-border-color: #42b983;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+    .mermaid {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .app-name-link img {
+      width: 60px;
+      height: 60px;
+    }
+    /* 表格优化 */
+    .markdown-section table {
+      display: block;
+      width: 100%;
+      overflow: auto;
+    }
+    /* 卡片样式 */
+    .markdown-section blockquote {
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">加载中...</div>
+  <script>
+    window.$docsify = {
+      name: 'Vibe Coding 知识库',
+      repo: '',
+      loadSidebar: true,
+      subMaxLevel: 3,
+      loadNavbar: false,
+      coverpage: false,
+      search: {
+        placeholder: '搜索...',
+        noData: '没有结果',
+        depth: 3,
+      },
+      mermaidConfig: {
+        querySelector: '.mermaid',
+      },
+      copyCode: {
+        buttonText: '复制',
+        errorText: '复制失败',
+        successText: '已复制',
+      },
+      'flexible-alerts': {
+        style: 'flat',
+      },
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            if (/githubusercontent\.raw/.test(vm.route.file)) {
+              url = vm.route.file
+                .replace('githubusercontent', 'github')
+                .replace('raw/', 'blob/');
+            }
+            return html;
+          });
+        },
+      ],
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/emoji.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code@2/dist/docsify-copy-code.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-themeable@0/dist/js/docsify-themeable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify-mermaid@1.0.3/dist/docsify-mermaid.min.js"></script>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      themeVariables: {
+        primaryColor: '#42b983',
+        primaryTextColor: '#333',
+        primaryBorderColor: '#42b983',
+        lineColor: '#666',
+        secondaryColor: '#f0f0f0',
+        tertiaryColor: '#fafafa',
+      },
+      flowchart: {
+        curve: 'basis',
+        useMaxWidth: true,
+      },
+    });
+    window.mermaid = mermaid;
+  </script>
+</body>
+</html>
