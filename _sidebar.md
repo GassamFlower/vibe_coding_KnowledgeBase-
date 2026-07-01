@@ -2,6 +2,8 @@
 - **手册**
   - [完整手册](docs/Vibe%20Coding%20完整手册.md)
   - [项目可视化流程手册](docs/项目可视化流程手册.md)
+  - [AI协作全流程操作手册](docs/AI协作全流程操作手册.md)
+  - [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md)
 - **可执行流程**
   - [01 项目立项](workflows/01-项目立项流程.md)
   - [02 技术栈选择](workflows/02-技术栈选择流程.md)
