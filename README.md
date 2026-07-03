@@ -3,36 +3,323 @@
 > 把 AI 当工程师用，需要先给它规则、记忆和方法论。
 > 这套知识库就是你的"AI 项目操作手册"。
 
+---
+
 ## 这是什么
 
-一套用于 Vibe Coding（用 AI 做项目开发）的个人知识库，包含：
+一套用于 Vibe Coding（用 AI 做项目开发）的个人知识库。
 
-- **完整手册**：从立项到上线的全流程知识
-- **可视化流程**：5 种项目状态的决策路径
-- **AI 协作全流程操作手册**：每个阶段的对话挖掘 / 执行 / 验收 / 文档策略
-- **Prompt 模板库**：按阶段组织、可直接复制的 prompt 工具箱
-- **可执行流程**：每个阶段的具体步骤
-- **Skill 方法论**：8 类高频任务的处理方法
-- **对话模板**：17 条技巧 + 8 个可复制 Prompt
+**核心思想**：知识库（reference）+ 工作台（workspace）分离。
+- 知识库放规则、方法论、模板——**只在选型、查证、复盘时翻**
+- 工作台放门禁卡、状态追踪——**每天干活只看这个**
 
-## 快速开始
+---
 
-### 第一次来？
+## 目录结构与用途
 
-1. 先看 [项目可视化流程手册](docs/项目可视化流程手册.md) — 判断你的项目处于什么状态
-2. 按状态跳到对应章节，按流程图执行
-3. 进入某个阶段前，翻 [AI协作全流程操作手册](docs/AI协作全流程操作手册.md) 对应章节 — 确认挖掘点 / 执行清单 / 验收标准 / 文档策略
-4. 每次对话开始前，从 [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) 找对应阶段的 prompt 直接复制
+```
+Vibe_Coding/
+├── docs/              ← 知识库（查证用）
+├── workflows/         ← 流程速查（查证用）
+├── skills/            ← 方法论库（导入到项目用）
+├── prompts/           ← 对话技巧库（对话时复制用）
+├── templates/         ← 工作台模板（复制到项目用）
+└── sources/_archive/  ← 原始笔记归档（溯源用）
+```
 
-### 目录导航
+### 每个目录的定位
 
-| 目录 | 内容 | 何时用 |
+| 目录 | 内容 | 什么时候用 | 怎么用 |
+|---|---|---|---|
+| `templates/` | 4 张门禁卡 + PROJECT_STATUS 模板 | **每天开发** | 复制到新项目根目录 |
+| `skills/` | 9 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
+| `prompts/` | 17 条对话技巧 + 8 个模板 | **每次对话时** | 从对应阶段复制 prompt 发给 AI |
+| `docs/` | 3 篇深度手册 | **遇到盲区时** | 翻对应章节查证 |
+| `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
+| `sources/_archive/` | 16 篇原始笔记 | **需要溯源时** | 偶尔翻 |
+
+**核心原则**：日常只碰 `templates/` 和 `skills/`，其他目录偶尔翻。
+
+---
+
+## 使用流程
+
+### 场景 1：新项目启动（第一天）
+
+**目标**：从知识库取工具，建好工作台。
+
+```
+新项目目录（比如 e:\project\task-manager\）
+├── skills/                    ← 从知识库复制
+├── AGENT_CONSTITUTION.md      ← 项目内创建
+├── PROJECT_STATUS.md          ← 从知识库复制
+└── docs/立项文档.md            ← 与 AI 讨论后生成
+```
+
+**操作步骤**：
+
+1. **创建新项目文件夹**（英文 + 中划线，如 `task-manager`）
+
+2. **复制 skills/ 到新项目根目录**
+   ```powershell
+   # 在新项目根目录执行
+   Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destination ".\skills\" -Recurse
+   ```
+   > skills 是 AI 在项目中需要遵守的方法论。复制到项目根目录，AI 才能读到。
+
+3. **复制 PROJECT_STATUS.md 到新项目根目录**
+   ```powershell
+   Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\PROJECT_STATUS.md" ".\PROJECT_STATUS.md"
+   ```
+   > 这是你的"施工日志"。每天开始工作先看它，结束就更新它。
+
+4. **打开对应门禁卡**
+   - 新项目从「立项门」开始
+   - 文件位置：`e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\门禁卡-立项门.md`
+   - 照着门禁卡的清单和 prompt 走
+
+5. **从 prompts/ 找对应阶段的 prompt**
+   - 立项阶段用：`prompts/最实用的AI对话技巧.md` 中的"挖掘型"prompt
+   - 直接复制 → 替换 `[方括号]` 内容 → 发给 AI
+
+6. **初始化 Git**
+   ```powershell
+   git init
+   git add .
+   git commit -m "chore: 项目初始化"
+   ```
+
+---
+
+### 场景 2：日常开发（每个工作日）
+
+**目标**：只看 1 个文件，不翻知识库。
+
+**每天开始工作时**：
+
+1. **打开项目根目录的 `PROJECT_STATUS.md`**
+2. 看 3 件事：
+   - 当前门禁是什么（立项门 / 架构门 / 业务门 / 上线门）
+   - 验收清单哪些还没勾
+   - 下一步要做什么
+3. **翻对应门禁卡**（在知识库 `templates/` 里）
+   - 复制门禁卡里的 prompt
+   - 替换 `[方括号]` 内容
+   - 发给 AI
+4. **AI 干活时，你盯进度**
+5. **完成一项 → 在 PROJECT_STATUS.md 勾选一项**
+
+**遇到盲区时**（不知道某个阶段怎么做、不知道某个 prompt 怎么写）：
+
+1. 翻 `docs/AI协作全流程操作手册.md` 对应章节——查详细操作细则
+2. 翻 `docs/全流程AI对话Prompt模板库.md`——查可直接复制的 prompt
+3. 翻 `workflows/全流程速查.md`——查某个阶段的快速步骤
+
+**每天结束工作时**：
+
+1. 在 `PROJECT_STATUS.md` 更新验收清单勾选状态
+2. 更新「下一步」
+3. 在「工作日志」表格加一行：日期 + 做了什么 + 问题
+4. 如果改了规则，在「规则变更记录」加一行
+5. 如果踩了坑，在「踩坑记录」加一行
+6. Git 提交
+
+---
+
+### 场景 3：过门禁（每个门禁结束时）
+
+**目标**：用证据证明规则立住了。
+
+**4 个门禁**：
+
+| 门禁 | 包含阶段 | 过门禁标准 |
 |---|---|---|
-| 📚 [docs/](docs/) | 完整手册 + 可视化流程 | 学习、查证 |
-| 🔧 [workflows/](workflows/) | 9 个可执行流程 | 每个阶段开始时 |
-| 🎯 [skills/](skills/) | 8 个 Skill 方法论 | 处理某类任务时 |
-| 💬 [prompts/](prompts/) | 对话技巧和模板 | 每轮对话开始时 |
-| 📝 [sources/](sources/) | 原始笔记 | 追溯来源 |
+| 立项门 | 立项 + 选型 + 宪法 | 方向定死了，AI 有规矩了 |
+| 架构门 | 前端骨架 + 数据库 + 后端骨架 + 后端验收 | 四条线跑通了，真源文档有了 |
+| 业务门 | 业务模块开发 + 安全审查 | 功能做完了，安全过了 |
+| 上线门 | 上线验收 + 上线 + Skill 反哺 | 验收过了，Skill 反哺了 |
+
+**过门禁动作**：
+
+1. 翻对应门禁卡，逐项核对「过门禁标准」和「验收清单」
+2. 每项必须有证据（文件 / 命令 / 输出 / 日志）
+3. 没证据的项目标记"未验证"，不允许"基本完成"
+4. 全部通过后，在 `PROJECT_STATUS.md` 更新当前门禁为下一个
+5. Git 提交：`git commit -m "chore: 通过 XX 门禁"`
+
+---
+
+### 场景 4：项目结束（上线后）
+
+**目标**：反哺知识库，让下个项目更好。
+
+1. **整理踩坑清单**（从 `PROJECT_STATUS.md` 的「踩坑记录」提取）
+2. **反哺 skills/**
+   - 哪个 Skill 没覆盖到这次的坑？→ 加规则
+   - 哪个 Skill 的规则不够强？→ 强化
+   - 文件位置：知识库 `skills/` 目录
+3. **反哺 prompts/**
+   - 哪个阶段的 prompt 不好用？→ 改进
+   - 缺哪个 prompt？→ 新增
+   - 文件位置：知识库 `prompts/` 目录
+4. **写复盘报告**（可放进知识库 `docs/` 或项目根目录）
+5. **更新 PROJECT_STATUS.md 的「下次项目提醒」**
+6. **知识库 Git 提交**：
+   ```powershell
+   cd e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding
+   git add skills/ prompts/
+   git commit -m "docs: 反哺 N 条新经验到知识库"
+   git push
+   ```
+
+---
+
+## Skills 怎么导入到项目
+
+### 为什么要导入
+
+skills/ 里的方法论是给 **AI** 看的规则。不复制到项目根目录，AI 在新项目里读不到，就会回到"自由发挥"模式。
+
+### 怎么导入
+
+**方式 1：全部导入（推荐新项目）**
+
+```powershell
+# 在新项目根目录执行
+mkdir skills
+Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destination ".\skills\" -Recurse
+```
+
+**方式 2：按需导入（轻量项目）**
+
+只复制本项目需要的 Skill：
+```powershell
+# 比如只导入调试和验收两个
+mkdir skills
+Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\systematic-debugging.md" ".\skills\"
+Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-before-completion.md" ".\skills\"
+```
+
+### 导入后怎么让 AI 知道
+
+在项目根目录创建 `AGENT_CONSTITUTION.md`，加引用条款：
+
+```markdown
+## 项目约束
+
+本项目 Agent 必须遵守以下 Skill 方法论：
+- skills/systematic-debugging.md（调试时）
+- skills/verification-before-completion.md（宣布完成前）
+- skills/backend-security-review.md（后端安全审查时）
+- skills/database-design.md（数据库设计时）
+- skills/writing-plans.md（开发计划时）
+- ...
+```
+
+不同 IDE 读取位置不同：
+- **Codex**：项目根目录 `AGENTS.md`
+- **Cursor**：`.cursor/rules/` 目录
+- **Claude Code**：`CLAUDE.md` 或 `.claude/CLAUDE.md`
+- **Trae**：`.trae/rules/project.md`
+
+入口文件只写一行引用宪法，不复制内容（避免多处不同步）。
+
+### 9 个 Skill 的用途
+
+| Skill 文件 | 什么时候用 |
+|---|---|
+| `brainstorming.md` | 头脑风暴、需求挖掘 |
+| `writing-plans.md` | 写开发计划、模块拆分 |
+| `systematic-debugging.md` | 系统化调试 Bug |
+| `verification-before-completion.md` | 宣布"完成"之前必走 |
+| `requesting-code-review.md` | 代码审查 |
+| `browser-verification.md` | 浏览器验证前端 |
+| `database-design.md` | 设计数据库 |
+| `backend-architecture-acceptance.md` | 后端架构验收 |
+| `backend-security-review.md` | 后端安全审查 |
+
+---
+
+## Prompts 怎么用
+
+### 两种 prompts 资源
+
+1. **`prompts/最实用的AI对话技巧.md`**：17 条高频技巧 + 8 个模板
+   - 用于：日常对话遇到问题时查
+   - 用法：翻到对应技巧，照着改
+
+2. **`docs/全流程AI对话Prompt模板库.md`**：50+ 个按阶段组织的 prompt
+   - 用于：进入某个阶段时批量取用
+   - 用法：翻到对应阶段部分，复制 prompt
+
+### Prompt 三种类型
+
+| 类型 | 用在 | 特征 |
+|---|---|---|
+| 🗣️ 挖掘型 | 对话挖掘期 | 让 AI 反问、补盲区、给判断 |
+| ⚡ 执行型 | 执行交付期 | 范围锁死、验收前置 |
+| ✅ 验收型 | 验收固化期 | 禁止模糊词、要证据 |
+
+### 使用步骤
+
+1. **判断当前在哪个阶段**（看 `PROJECT_STATUS.md` 的当前门禁）
+2. **从对应门禁卡复制 prompt**（门禁卡里已精选 3 个最常用的）
+3. **需要更多 prompt 时**，翻 `docs/全流程AI对话Prompt模板库.md` 对应部分
+4. **替换 `[方括号]` 内容**为你的实际情况
+5. **发给 AI**
+
+### 高频追问模板（AI 偷懒时用）
+
+**AI 用模糊词**：
+```
+禁止使用"基本完成""应该没问题""理论上可以"。
+要么"通过"，要么"未通过"加原因。
+```
+
+**AI 列多方案甩锅**：
+```
+请基于我的项目情况给唯一推荐，并说明为什么不选其他方案。
+```
+
+**AI 不给证据**：
+```
+每项必须说明：规则来源、对应文件、验证方式、实际结果、是否通过。
+没有证据的项目标记为"未验证"。
+```
+
+---
+
+## Templates 怎么用
+
+### 5 个模板文件
+
+| 模板 | 用途 | 用法 |
+|---|---|---|
+| `PROJECT_STATUS.md` | 项目状态追踪 | **复制到新项目根目录**，每天维护 |
+| `门禁卡-立项门.md` | 立项门操作清单 | 进入立项门时翻 |
+| `门禁卡-架构门.md` | 架构门操作清单 | 进入架构门时翻 |
+| `门禁卡-业务门.md` | 业务门操作清单 | 进入业务门时翻 |
+| `门禁卡-上线门.md` | 上线门操作清单 | 进入上线门时翻 |
+
+### PROJECT_STATUS.md 的 6 个区域
+
+1. **项目信息**：项目名、开始日期、当前门禁
+2. **当前门禁**：正在过哪个门、什么时候进入的
+3. **验收清单**：从门禁卡复制，逐项勾选
+4. **下一步**：当前要做的不超过 3 件事
+5. **工作日志**：每天一行，做了什么、问题
+6. **规则变更记录**：每次改真源文档 / 宪法时记录
+7. **踩坑记录**：每次踩坑时记录，项目结束时反哺 Skill
+
+### 门禁卡的 5 个区域
+
+1. **过门禁标准**：硬指标（必须全勾才能过门禁）
+2. **验收清单**：详细检查项
+3. **常用 Prompt**：3 个最常用的 prompt（直接复制用）
+4. **常见遗漏项**：踩坑提醒
+5. **配套文档链接**：需要详细操作时翻
+
+---
 
 ## 核心心法
 
@@ -41,50 +328,85 @@
 > **AI 默认讨好 → 你要逼它给判断**
 > **AI 默认结论 → 你要逼它给证据**
 > **AI 默认前进 → 你要逼它会停**
+> **判断模糊先聊，规则清晰才做**
+> **改代码前先改文档，改完代码再核文档**
 
-## 如何使用
+---
 
-### 在 AI IDE 中（Codex / Claude Code / Trae）
-
-把 `skills/` 复制到项目根目录，在 Agent 宪法里引用：
+## 快速决策树
 
 ```
-本项目 Agent 必须遵守：
-- skills/systematic-debugging.md（调试时）
-- skills/verification-before-completion.md（宣布完成前）
-- skills/backend-security-review.md（后端安全审查时）
-- ...
+我现在该做什么？
+│
+├─ 新项目刚启动？
+│   └─ 复制 skills/ + PROJECT_STATUS.md 到项目根目录
+│      翻「门禁卡-立项门」照着做
+│
+├─ 日常开发中？
+│   └─ 看 PROJECT_STATUS.md 的「下一步」
+│      翻对应门禁卡复制 prompt
+│      不翻知识库
+│
+├─ 遇到盲区？
+│   └─ 翻 docs/AI协作全流程操作手册.md 对应章节
+│      翻 docs/全流程AI对话Prompt模板库.md 找 prompt
+│
+├─ 过门禁？
+│   └─ 翻对应门禁卡的「过门禁标准」
+│      逐项核对，必须有证据
+│      全过才进入下一个门禁
+│
+├─ 项目上线了？
+│   └─ 整理踩坑清单
+│      反哺 skills/ 和 prompts/
+│      知识库 git push
+│
+└─ 不知道在哪个阶段？
+    └─ 翻 docs/项目可视化流程手册.md 第 1 章决策树
 ```
 
-### 在浏览器中
-
-本网站就是知识库的可视化入口。AI 读 `.md` 源文件，你读浏览器渲染后的页面，**一份内容两种形态**。
-
-## 本地启动
-
-```bash
-# 方式1: 用 docsify-cli
-npx docsify-cli serve .
-
-# 方式2: 用 Python
-python -m http.server 3000
-
-# 方式3: 用 Node http-server
-npx http-server -p 3000
-```
-
-打开浏览器访问 `http://localhost:3000`。
+---
 
 ## 项目状态速查
 
 | 状态 | 特征 | 起点 |
 |---|---|---|
-| 0 纯想法 | 没代码没文档 | [0-1 完整流程](docs/项目可视化流程手册.md#第二章状态-0-纯想法0-1-完整流程) |
-| 1 烂尾 | 有代码跑不起来 | [烂尾抢救流程](docs/项目可视化流程手册.md#第三章状态-1-烂尾抢救流程) |
-| 2 半成品 | 能跑但残缺 | [半成品补全流程](docs/项目可视化流程手册.md#第四章状态-2-半成品补全流程) |
-| 3 黑盒 | 能跑但没文档 | [黑盒考古流程](docs/项目可视化流程手册.md#第五章状态-3-黑盒考古流程) |
-| 4 健康 | 能跑+有文档 | [健康项目迭代](docs/项目可视化流程手册.md#第六章状态-4-健康项目迭代流程) |
+| 0 纯想法 | 没代码没文档 | 从「立项门」开始 |
+| 1 烂尾 | 有代码跑不起来 | [烂尾抢救流程](docs/项目可视化流程手册.md) |
+| 2 半成品 | 能跑但残缺 | [半成品补全流程](docs/项目可视化流程手册.md) |
+| 3 黑盒 | 能跑但没文档 | [黑盒考古流程](docs/项目可视化流程手册.md) |
+| 4 健康 | 能跑+有文档 | [健康项目迭代](docs/项目可视化流程手册.md) |
+
+> 💡 **小提示**：90% 的"已完成项目"实际是状态 3（黑盒），不是状态 4。先按黑盒考古流程走。
 
 ---
 
-> 💡 **小提示**：90% 的"已完成项目"实际是状态 3（黑盒），不是状态 4。先按黑盒考古流程走。
+## 配套文档导航
+
+| 我想做什么 | 翻哪个文档 |
+|---|---|
+| 判断项目处于什么状态 | [项目可视化流程手册](docs/项目可视化流程手册.md) |
+| 查某个阶段的详细操作 | [AI协作全流程操作手册](docs/AI协作全流程操作手册.md) |
+| 找可直接复制的 prompt | [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) |
+| 查某个阶段的快速步骤 | [全流程速查](workflows/全流程速查.md) |
+| 查 17 条对话技巧 | [最实用的AI对话技巧](prompts/最实用的AI对话技巧.md) |
+| 看某个 Skill 的方法论 | [skills/ 目录](skills/) |
+| 溯源某条规则的来源 | [sources/_archive/](sources/_archive/) |
+
+---
+
+## 版本管理
+
+知识库本身用 Git 管理。每次反哺 Skill / Prompt 后提交：
+
+```powershell
+cd e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding
+git add skills/ prompts/
+git commit -m "docs: 反哺 N 条新经验"
+git push
+```
+
+知识库演进原则：
+- **只增不删**：旧规则不轻易删，标注"已废弃"
+- **加规则必加场景**：每条新规则说明"什么时候用"
+- **反哺前先验证**：新规则必须在一个完整项目中验证过才入库
