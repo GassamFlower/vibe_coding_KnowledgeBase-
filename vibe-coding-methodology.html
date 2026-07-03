@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Coding 脚手架化 · 方法论总览</title>
+<style>
+  :root {
+    --color-background-primary: #FFFFFF;
+    --color-background-secondary: #F9F9FB;
+    --color-background-tertiary: #F2F2F5;
+    --color-text-primary: #18191C;
+    --color-text-secondary: #5F5E5A;
+    --color-text-tertiary: #888780;
+    --color-border-tertiary: rgba(0,0,0,0.10);
+    --border-radius-lg: 12px;
+    --font-sans: "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: var(--font-sans); background: var(--color-background-tertiary); color: var(--color-text-primary); -webkit-font-smoothing: antialiased; }
+  .container { max-width: 760px; margin: 0 auto; padding: 40px 20px; }
+  .card { background: var(--color-background-primary); border-radius: var(--border-radius-lg); margin-bottom: 32px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); }
+  .card svg { display: block; width: 100%; height: auto; }
+  .card:first-of-type svg { background: var(--color-background-primary); }
+  .card:nth-of-type(2) svg { background: var(--color-background-primary); }
+  .card:nth-of-type(3) svg { background: var(--color-background-primary); }
+  .card:nth-of-type(4) svg { background: var(--color-background-primary); }
+  .footer { text-align: center; padding: 40px 0; color: var(--color-text-tertiary); font-size: 12px; }
+  .footer a { color: var(--color-text-secondary); text-decoration: none; }
+  @media (max-width: 720px) {
+    .container { padding: 20px 12px; }
+    .card { margin-bottom: 20px; }
+  }
+  @media print {
+    body { background: white; }
+    .container { max-width: 100%; padding: 0; }
+    .card { box-shadow: none; page-break-inside: avoid; margin-bottom: 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="card">
+    <svg viewBox="0 0 680 720" width="100%" height="auto" role="img" aria-labelledby="t1 d1">
+      <title id="t1">Vibe Coding 核心心法与四道门禁</title>
+      <desc id="d1">六条心法与四道门禁流程总览</desc>
+      <defs>
+        <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <text x="40" y="44" font-family="var(--font-sans)" font-size="15" font-weight="500" fill="#18191C">Vibe Coding 脚手架化 · 方法论总览</text>
+      <text x="40" y="66" font-family="var(--font-sans)" font-size="13" fill="#5F5E5A">把 AI 当工程师用，先给它规则、记忆和方法论</text>
+      <text x="40" y="104" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#18191C">六条核心心法</text>
+      <rect x="40" y="116" width="600" height="156" rx="12" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <g font-family="var(--font-sans)" font-size="13">
+        <text x="60" y="142" fill="#18191C" font-weight="500">AI 没记忆</text>
+        <text x="180" y="142" fill="#5F5E5A">→ 文档是它的记忆</text>
+        <text x="360" y="142" fill="#18191C" font-weight="500">AI 默认动手</text>
+        <text x="480" y="142" fill="#5F5E5A">→ 逼它先想</text>
+        <text x="60" y="172" fill="#18191C" font-weight="500">AI 默认讨好</text>
+        <text x="180" y="172" fill="#5F5E5A">→ 逼它给判断</text>
+        <text x="360" y="172" fill="#18191C" font-weight="500">AI 默认结论</text>
+        <text x="480" y="172" fill="#5F5E5A">→ 逼它给证据</text>
+        <text x="60" y="202" fill="#18191C" font-weight="500">AI 默认前进</text>
+        <text x="180" y="202" fill="#5F5E5A">→ 逼它会停</text>
+        <text x="360" y="202" fill="#18191C" font-weight="500">判断模糊先聊</text>
+        <text x="500" y="202" fill="#5F5E5A">规则清晰才做</text>
+        <text x="60" y="240" fill="#888780" font-size="12">改代码前先改文档，改完代码再核文档</text>
+      </g>
+      <text x="40" y="312" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#18191C">四道门禁 · 项目推进的硬关卡</text>
+      <text x="40" y="332" font-family="var(--font-sans)" font-size="12" fill="#888780">每道门禁必须用证据证明规则立住了，全过才进入下一阶段</text>
+      <g>
+        <rect x="40" y="350" width="138" height="100" rx="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+        <text x="109" y="376" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#3C3489">立项门</text>
+        <text x="109" y="398" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#534AB7">方向定死了</text>
+        <text x="109" y="418" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#534AB7">AI 有规矩了</text>
+        <text x="109" y="438" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#7F77DD">立项 + 选型 + 宪法</text>
+      </g>
+      <line x1="186" y1="400" x2="216" y2="400" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <g>
+        <rect x="220" y="350" width="138" height="100" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="289" y="376" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">架构门</text>
+        <text x="289" y="398" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">四条线跑通了</text>
+        <text x="289" y="418" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">真源文档有了</text>
+        <text x="289" y="438" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#378ADD">前端+数据库+后端+验收</text>
+      </g>
+      <line x1="366" y1="400" x2="396" y2="400" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <g>
+        <rect x="400" y="350" width="138" height="100" rx="10" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+        <text x="469" y="376" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#633806">业务门</text>
+        <text x="469" y="398" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#854F0B">功能做完了</text>
+        <text x="469" y="418" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#854F0B">安全过了</text>
+        <text x="469" y="438" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#BA7517">业务开发 + 安全审查</text>
+      </g>
+      <line x1="546" y1="400" x2="576" y2="400" stroke="#5F5E5A" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <g>
+        <rect x="580" y="350" width="60" height="100" rx="10" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+        <text x="610" y="376" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#085041">上线门</text>
+        <text x="610" y="400" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#0F6E56">验收过</text>
+        <text x="610" y="420" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#0F6E56">反哺了</text>
+      </g>
+      <rect x="40" y="470" width="600" height="230" rx="12" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <text x="60" y="496" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#18191C">每道门禁的过门标准（硬指标）</text>
+      <g font-family="var(--font-sans)" font-size="12">
+        <text x="60" y="522" fill="#534AB7" font-weight="500">立项门</text>
+        <text x="120" y="522" fill="#5F5E5A">立项文档 8 项内容 · 技术选型唯一推荐 · Agent 宪法落盘 · Git 提交 >=3 次</text>
+        <text x="60" y="552" fill="#185FA5" font-weight="500">架构门</text>
+        <text x="120" y="552" fill="#5F5E5A">前端能启动 · 数据库能建表查询 · 后端 4 条线跑通 · 真源文档落盘 · Git >=4 次</text>
+        <text x="60" y="582" fill="#854F0B" font-weight="500">业务门</text>
+        <text x="120" y="582" fill="#5F5E5A">P0 功能完成 · 每轮有验收证据 · 安全 5 关卡全过 · 水平越权测试 · 无拼接注入</text>
+        <text x="60" y="612" fill="#0F6E56" font-weight="500">上线门</text>
+        <text x="120" y="612" fill="#5F5E5A">5 维度审查无严重项 · 风险项登记 · 验收报告落盘 · 项目上线 · 至少反哺 1 条 Skill</text>
+      </g>
+      <rect x="60" y="640" width="560" height="44" rx="8" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+      <text x="80" y="662" font-family="var(--font-sans)" font-size="12" fill="#3C3489" font-weight="500">核心原则</text>
+      <text x="80" y="678" font-family="var(--font-sans)" font-size="11" fill="#534AB7">没证据的项目标记"未验证"，不允许"基本完成"。要么"通过"，要么"未通过"加原因。</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <svg viewBox="0 0 680 940" width="100%" height="auto" role="img" aria-labelledby="t2 d2">
+      <title id="t2">Vibe Coding 11 阶段全流程时间线</title>
+      <desc id="d2">从立项到上线反哺的 11 个阶段，含触发条件、产出与验收</desc>
+      <defs>
+        <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <text x="40" y="44" font-family="var(--font-sans)" font-size="15" font-weight="500" fill="#18191C">11 阶段全流程时间线</text>
+      <text x="40" y="66" font-family="var(--font-sans)" font-size="13" fill="#5F5E5A">从纯想法到上线反哺，每阶段一个可验收的交付块</text>
+      <line x1="74" y1="100" x2="74" y2="900" stroke="rgba(0,0,0,0.10)" stroke-width="1.5"/>
+      <g font-family="var(--font-sans)">
+        <circle cx="74" cy="120" r="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+        <text x="98" y="116" font-size="13" font-weight="500" fill="#3C3489">阶段 1 · 项目立项</text>
+        <text x="98" y="134" font-size="11" fill="#888780">触发：准备开始新项目</text>
+        <text x="98" y="150" font-size="11" fill="#5F5E5A">产出：立项文档（8 项内容） · 验收：AI 确认"暂时不写代码" + Git 提交</text>
+        <circle cx="74" cy="192" r="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+        <text x="98" y="188" font-size="13" font-weight="500" fill="#3C3489">阶段 2 · 技术栈选择</text>
+        <text x="98" y="206" font-size="11" fill="#888780">触发：立项文档已生成</text>
+        <text x="98" y="222" font-size="11" fill="#5F5E5A">产出：技术选型文档 · 验收：AI 给唯一推荐 + 能说清"为什么不选其他"</text>
+        <circle cx="74" cy="264" r="8" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+        <text x="98" y="260" font-size="13" font-weight="500" fill="#3C3489">阶段 3 · Agent 宪法</text>
+        <text x="98" y="278" font-size="11" fill="#888780">触发：技术栈确定，即将写第一行代码</text>
+        <text x="98" y="294" font-size="11" fill="#5F5E5A">产出：AGENT_CONSTITUTION.md · 验收：&lt;=200 行 + 含禁止事项 + 项目专属条款 >=5</text>
+        <circle cx="74" cy="336" r="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+        <text x="98" y="332" font-size="13" font-weight="500" fill="#0C447C">阶段 4 · 前端骨架</text>
+        <text x="98" y="350" font-size="11" fill="#888780">触发：立项、选型、宪法都已完成</text>
+        <text x="98" y="366" font-size="11" fill="#5F5E5A">产出：前端实施计划 + 最小可运行骨架 · 验收：能启动 + 设计 token 已定 + UI 库接入</text>
+        <circle cx="74" cy="408" r="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+        <text x="98" y="404" font-size="13" font-weight="500" fill="#0C447C">阶段 5 · 数据库设计</text>
+        <text x="98" y="422" font-size="11" fill="#888780">触发：前端页面/流程基本确定</text>
+        <text x="98" y="438" font-size="11" fill="#5F5E5A">产出：schema.sql + 数据库实施计划 · 验收：能建表/插入/查询 + 三大范式校验</text>
+        <circle cx="74" cy="480" r="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+        <text x="98" y="476" font-size="13" font-weight="500" fill="#0C447C">阶段 6 · 后端骨架</text>
+        <text x="98" y="494" font-size="11" fill="#888780">触发：立项、选型、数据库设计完成</text>
+        <text x="98" y="510" font-size="11" fill="#5F5E5A">产出：架构设计文档 + 最小可运行骨架 · 验收：启动/接口/业务/运维四条线跑通</text>
+        <circle cx="74" cy="552" r="8" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.5"/>
+        <text x="98" y="548" font-size="13" font-weight="500" fill="#0C447C">阶段 7 · 后端架构验收</text>
+        <text x="98" y="566" font-size="11" fill="#888780">触发：AI 报告"后端骨架已搭好"</text>
+        <text x="98" y="582" font-size="11" fill="#5F5E5A">产出：验收报告 + 实施真源文档 · 验收：11 种接口场景齐全 + 启动证据包完整</text>
+        <circle cx="74" cy="624" r="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1.5"/>
+        <text x="98" y="620" font-size="13" font-weight="500" fill="#633806">阶段 8 · 业务模块开发（多轮）</text>
+        <text x="98" y="638" font-size="11" fill="#888780">触发：后端架构验收通过</text>
+        <text x="98" y="654" font-size="11" fill="#5F5E5A">产出：业务接口 + 每轮 Git 提交 · 验收：每轮 7 项（功能/规则/安全/数据/接口/日志/回归）</text>
+        <circle cx="74" cy="696" r="8" fill="#FAEEDA" stroke="#854F0B" stroke-width="1.5"/>
+        <text x="98" y="692" font-size="13" font-weight="500" fill="#633806">阶段 9 · 后端安全审查</text>
+        <text x="98" y="710" font-size="11" fill="#888780">触发：业务功能开发后，重要功能上线前</text>
+        <text x="98" y="726" font-size="11" fill="#5F5E5A">产出：安全边界表 + 权限设计表 + 整改清单 · 验收：5 关卡全过 + 无拼接注入</text>
+        <circle cx="74" cy="768" r="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+        <text x="98" y="764" font-size="13" font-weight="500" fill="#085041">阶段 10 · 上线前总验收</text>
+        <text x="98" y="782" font-size="11" fill="#888780">触发：所有功能开发完成</text>
+        <text x="98" y="798" font-size="11" fill="#5F5E5A">产出：上线前验收报告 · 验收：5 维度审查 + 无严重项 + 风险项登记</text>
+        <circle cx="74" cy="840" r="8" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+        <text x="98" y="836" font-size="13" font-weight="500" fill="#085041">阶段 11 · 上线 + Skill 反哺</text>
+        <text x="98" y="854" font-size="11" fill="#888780">触发：验收通过，准备上线</text>
+        <text x="98" y="870" font-size="11" fill="#5F5E5A">产出：复盘报告 + 迭代后 Skill 库 · 验收：至少反哺 1 条新经验</text>
+      </g>
+      <rect x="40" y="892" width="600" height="36" rx="8" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <text x="60" y="914" font-family="var(--font-sans)" font-size="11" fill="#888780">紫色=立项门 · 蓝色=架构门 · 琥珀=业务门 · 青绿=上线门，颜色对应上图四道门禁</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <svg viewBox="0 0 680 760" width="100%" height="auto" role="img" aria-labelledby="t3 d3">
+      <title id="t3">9 个 Skill 方法论矩阵</title>
+      <desc id="d3">AI 在项目中按需调用的 9 个技能，按类别分组</desc>
+      <text x="40" y="44" font-family="var(--font-sans)" font-size="15" font-weight="500" fill="#18191C">9 个 Skill 方法论矩阵</text>
+      <text x="40" y="66" font-family="var(--font-sans)" font-size="13" fill="#5F5E5A">语义命中后加载的"专业技能"，按需求与设计 / 开发计划 / 调试验收 三类组织</text>
+      <text x="40" y="104" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#3C3489">需求与设计</text>
+      <g>
+        <rect x="40" y="116" width="196" height="88" rx="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+        <text x="138" y="140" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#3C3489">brainstorming</text>
+        <text x="138" y="160" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#534AB7">头脑风暴</text>
+        <text x="138" y="182" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#7F77DD">"我想做个 XX"时触发</text>
+      </g>
+      <g>
+        <rect x="252" y="116" width="196" height="88" rx="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+        <text x="350" y="140" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#3C3489">database-design</text>
+        <text x="350" y="160" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#534AB7">数据库设计</text>
+        <text x="350" y="182" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#7F77DD">设计表结构/字段时触发</text>
+      </g>
+      <g>
+        <rect x="464" y="116" width="176" height="88" rx="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+        <text x="552" y="140" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#3C3489">writing-plans</text>
+        <text x="552" y="160" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#534AB7">编写开发计划</text>
+        <text x="552" y="182" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#7F77DD">拆任务/锁范围时触发</text>
+      </g>
+      <text x="40" y="236" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#0C447C">验收与审查</text>
+      <g>
+        <rect x="40" y="248" width="196" height="88" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="138" y="272" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">verification-before-completion</text>
+        <text x="138" y="292" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">完成前验证</text>
+        <text x="138" y="314" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#378ADD">AI 说"已完成"前必走</text>
+      </g>
+      <g>
+        <rect x="252" y="248" width="196" height="88" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="350" y="272" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">backend-architecture-acceptance</text>
+        <text x="350" y="292" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">后端架构验收</text>
+        <text x="350" y="314" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#378ADD">骨架搭好后验收时触发</text>
+      </g>
+      <g>
+        <rect x="464" y="248" width="176" height="88" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="552" y="272" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">backend-security-review</text>
+        <text x="552" y="292" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">后端安全审查</text>
+        <text x="552" y="314" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#378ADD">安全审查 5 关卡时触发</text>
+      </g>
+      <g>
+        <rect x="40" y="352" width="290" height="88" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="185" y="376" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">requesting-code-review</text>
+        <text x="185" y="396" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">代码审查</text>
+        <text x="185" y="418" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#378ADD">上线前 5 维度审查时触发</text>
+      </g>
+      <g>
+        <rect x="346" y="352" width="294" height="88" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="493" y="376" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">browser-verification</text>
+        <text x="493" y="396" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">浏览器验证</text>
+        <text x="493" y="418" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#378ADD">前端验证/跨端单位时触发</text>
+      </g>
+      <text x="40" y="472" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#633806">调试</text>
+      <g>
+        <rect x="40" y="484" width="600" height="88" rx="10" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+        <text x="340" y="508" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#633806">systematic-debugging</text>
+        <text x="340" y="528" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#854F0B">系统化调试</text>
+        <text x="340" y="550" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="11" fill="#BA7517">遇到 Bug 时触发 · 找根因不猜，禁止"试试看"式修补</text>
+      </g>
+      <rect x="40" y="596" width="600" height="144" rx="12" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <text x="60" y="622" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#18191C">Skill 的三个设计目的</text>
+      <g font-family="var(--font-sans)" font-size="12">
+        <text x="60" y="648" fill="#18191C" font-weight="500">1. 保持宪法简洁</text>
+        <text x="200" y="648" fill="#5F5E5A">不要什么都往 Agent 宪法里塞，具体流程放 Skill</text>
+        <text x="60" y="676" fill="#18191C" font-weight="500">2. 减少 AI 漂移</text>
+        <text x="200" y="676" fill="#5F5E5A">让 AI 在 Vibe Coding 过程中不每次都自由发挥</text>
+        <text x="60" y="704" fill="#18191C" font-weight="500">3. 技术平权</text>
+        <text x="200" y="704" fill="#5F5E5A">让小白也能借用高手的工程经验，按需调用而非记忆</text>
+      </g>
+      <text x="60" y="728" font-family="var(--font-sans)" font-size="11" fill="#888780">Skill 复制到项目根目录 skills/，在 Agent 宪法里引用，AI 才能读到</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <svg viewBox="0 0 680 880" width="100%" height="auto" role="img" aria-labelledby="t4 d4">
+      <title id="t4">项目状态决策树与知识库结构</title>
+      <desc id="d4">五种项目状态识别与知识库六个目录的职责分工</desc>
+      <defs>
+        <marker id="arrow4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#5F5E5A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <text x="40" y="44" font-family="var(--font-sans)" font-size="15" font-weight="500" fill="#18191C">项目状态决策树与知识库结构</text>
+      <text x="40" y="66" font-family="var(--font-sans)" font-size="13" fill="#5F5E5A">拿到项目先判断状态，再走对应流程；知识库按"知识库+工作台分离"组织</text>
+      <text x="40" y="104" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#18191C">第一步：判断项目处于什么状态</text>
+      <rect x="40" y="116" width="600" height="40" rx="8" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <text x="60" y="140" font-family="var(--font-sans)" font-size="12" fill="#5F5E5A" dominant-baseline="central">决策路径：有代码吗？→ 能跑起来吗？→ 有真源文档吗？→ 代码和文档对得上吗？</text>
+      <g>
+        <rect x="40" y="172" width="112" height="64" rx="10" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+        <text x="96" y="196" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#3C3489">状态 0</text>
+        <text x="96" y="216" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#534AB7">纯想法</text>
+      </g>
+      <text x="48" y="252" font-family="var(--font-sans)" font-size="11" fill="#7F77DD">没代码没文档</text>
+      <text x="48" y="268" font-family="var(--font-sans)" font-size="11" fill="#888780">→ 走 0-1 完整流程</text>
+      <g>
+        <rect x="160" y="172" width="112" height="64" rx="10" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5"/>
+        <text x="216" y="196" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#712B13">状态 1</text>
+        <text x="216" y="216" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#993C1D">烂尾</text>
+      </g>
+      <text x="168" y="252" font-family="var(--font-sans)" font-size="11" fill="#D85A30">有代码跑不起来</text>
+      <text x="168" y="268" font-family="var(--font-sans)" font-size="11" fill="#888780">→ 烂尾抢救流程</text>
+      <g>
+        <rect x="280" y="172" width="112" height="64" rx="10" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+        <text x="336" y="196" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#633806">状态 2</text>
+        <text x="336" y="216" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#854F0B">半成品</text>
+      </g>
+      <text x="288" y="252" font-family="var(--font-sans)" font-size="11" fill="#BA7517">能跑但功能残缺</text>
+      <text x="288" y="268" font-family="var(--font-sans)" font-size="11" fill="#888780">→ 半成品补全流程</text>
+      <g>
+        <rect x="400" y="172" width="112" height="64" rx="10" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+        <text x="456" y="196" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#0C447C">状态 3</text>
+        <text x="456" y="216" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#185FA5">黑盒</text>
+      </g>
+      <text x="408" y="252" font-family="var(--font-sans)" font-size="11" fill="#378ADD">能跑但没文档</text>
+      <text x="408" y="268" font-family="var(--font-sans)" font-size="11" fill="#888780">→ 黑盒考古流程</text>
+      <g>
+        <rect x="520" y="172" width="112" height="64" rx="10" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+        <text x="576" y="196" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#085041">状态 4</text>
+        <text x="576" y="216" text-anchor="middle" dominant-baseline="central" font-family="var(--font-sans)" font-size="12" fill="#0F6E56">健康</text>
+      </g>
+      <text x="528" y="252" font-family="var(--font-sans)" font-size="11" fill="#0F6E56">能跑+文档对得上</text>
+      <text x="528" y="268" font-family="var(--font-sans)" font-size="11" fill="#888780">→ 健康项目迭代</text>
+      <rect x="40" y="288" width="600" height="36" rx="8" fill="#FAECE7" stroke="#F0997B" stroke-width="0.5"/>
+      <text x="60" y="310" font-family="var(--font-sans)" font-size="11" fill="#712B13" dominant-baseline="central">关键提示：90% 的"已完成项目"实际是状态 3（黑盒），不是状态 4。先按黑盒考古流程走。</text>
+      <text x="40" y="356" font-family="var(--font-sans)" font-size="14" font-weight="500" fill="#18191C">知识库结构 · 知识库与工作台分离</text>
+      <text x="40" y="376" font-family="var(--font-sans)" font-size="12" fill="#888780">知识库放规则方法论（查证用），工作台放门禁卡状态追踪（每天干活用）</text>
+      <rect x="40" y="392" width="292" height="100" rx="12" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+      <text x="60" y="416" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#3C3489">templates/ · 工作台模板</text>
+      <text x="60" y="436" font-family="var(--font-sans)" font-size="11" fill="#534AB7">4 张门禁卡 + PROJECT_STATUS</text>
+      <text x="60" y="454" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">每天开发时用，复制到新项目根目录</text>
+      <text x="60" y="472" font-family="var(--font-sans)" font-size="11" fill="#888780">日常只碰这个目录</text>
+      <rect x="348" y="392" width="292" height="100" rx="12" fill="#E6F1FB" stroke="#85B7EB" stroke-width="0.5"/>
+      <text x="368" y="416" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#0C447C">skills/ · 方法论库</text>
+      <text x="368" y="436" font-family="var(--font-sans)" font-size="11" fill="#185FA5">9 个 Skill 方法论</text>
+      <text x="368" y="454" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">项目启动时复制到根目录</text>
+      <text x="368" y="472" font-family="var(--font-sans)" font-size="11" fill="#888780">在 Agent 宪法里引用</text>
+      <rect x="40" y="504" width="292" height="100" rx="12" fill="#FAEEDA" stroke="#FAC775" stroke-width="0.5"/>
+      <text x="60" y="528" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#633806">prompts/ · 对话技巧库</text>
+      <text x="60" y="548" font-family="var(--font-sans)" font-size="11" fill="#854F0B">17 条对话技巧 + 8 个模板</text>
+      <text x="60" y="566" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">每次对话时用，复制 prompt 发给 AI</text>
+      <text x="60" y="584" font-family="var(--font-sans)" font-size="11" fill="#888780">分挖掘型/执行型/验收型三类</text>
+      <rect x="348" y="504" width="292" height="100" rx="12" fill="#E1F5EE" stroke="#5DCAA5" stroke-width="0.5"/>
+      <text x="368" y="528" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#085041">docs/ · 深度手册</text>
+      <text x="368" y="548" font-family="var(--font-sans)" font-size="11" fill="#0F6E56">3 篇深度操作手册</text>
+      <text x="368" y="566" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">遇到盲区时翻对应章节查证</text>
+      <text x="368" y="584" font-family="var(--font-sans)" font-size="11" fill="#888780">可视化流程/操作手册/Prompt库</text>
+      <rect x="40" y="616" width="292" height="100" rx="12" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <text x="60" y="640" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#18191C">workflows/ · 流程速查</text>
+      <text x="60" y="660" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">1 篇全流程速查</text>
+      <text x="60" y="678" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">回顾流程时查某阶段快速步骤</text>
+      <text x="60" y="696" font-family="var(--font-sans)" font-size="11" fill="#888780">9 个流程合并为 1 个速查手册</text>
+      <rect x="348" y="616" width="292" height="100" rx="12" fill="#F9F9FB" stroke="rgba(0,0,0,0.10)" stroke-width="0.5"/>
+      <text x="368" y="640" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#18191C">sources/_archive/ · 原始笔记</text>
+      <text x="368" y="660" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">16 篇原始笔记归档</text>
+      <text x="368" y="678" font-family="var(--font-sans)" font-size="11" fill="#5F5E5A">需要溯源某条规则来源时翻</text>
+      <text x="368" y="696" font-family="var(--font-sans)" font-size="11" fill="#888780">偶尔翻</text>
+      <rect x="40" y="732" width="600" height="128" rx="12" fill="#EEEDFE" stroke="#AFA9EC" stroke-width="0.5"/>
+      <text x="60" y="756" font-family="var(--font-sans)" font-size="13" font-weight="500" fill="#3C3489">日常使用心法</text>
+      <g font-family="var(--font-sans)" font-size="12">
+        <text x="60" y="780" fill="#18191C" font-weight="500">日常只碰 templates/ 和 skills/</text>
+        <text x="280" y="780" fill="#5F5E5A">其他目录偶尔翻</text>
+        <text x="60" y="804" fill="#18191C" font-weight="500">新项目第一天</text>
+        <text x="180" y="804" fill="#5F5E5A">复制 skills/ + PROJECT_STATUS 到项目根目录，翻「立项门」照着做</text>
+        <text x="60" y="828" fill="#18191C" font-weight="500">遇到盲区</text>
+        <text x="160" y="828" fill="#5F5E5A">翻 docs/AI协作全流程操作手册 对应章节 + docs/全流程Prompt模板库</text>
+        <text x="60" y="848" font-size="11" fill="#888780">版本管理：知识库本身用 Git，只增不删，加规则必加场景，反哺前先验证</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="footer">
+    <p>Vibe Coding 脚手架化 · 方法论总览</p>
+    <p>内容来源：ima 知识库「Vibe Coding 脚手架化」· 视觉风格：清爽浅色专业</p>
+  </div>
+
+</div>
+</body>
+</html>
