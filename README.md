@@ -22,7 +22,6 @@ Vibe_Coding/
 ├── docs/              ← 知识库（查证用）
 ├── workflows/         ← 流程速查（查证用）
 ├── skills/            ← 方法论库（导入到项目用）
-├── prompts/           ← 对话技巧库（对话时复制用）
 ├── templates/         ← 工作台模板（复制到项目用）
 └── sources/_archive/  ← 原始笔记归档（溯源用）
 ```
@@ -31,10 +30,9 @@ Vibe_Coding/
 
 | 目录 | 内容 | 什么时候用 | 怎么用 |
 |---|---|---|---|
-| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 3 个新增模板 | **每天开发** | 复制到新项目根目录 |
+| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 复制到新项目根目录 |
 | `skills/` | 9 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
-| `prompts/` | 17 条对话技巧 + 8 个模板 | **每次对话时** | 从对应阶段复制 prompt 发给 AI |
-| `docs/` | 3 篇深度手册 | **遇到盲区时** | 翻对应章节查证 |
+| `docs/` | 3 篇深度手册（含 Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
 | `sources/_archive/` | 16 篇原始笔记 | **需要溯源时** | 偶尔翻 |
 
@@ -78,8 +76,8 @@ Vibe_Coding/
    - 文件位置：`e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\门禁卡-立项门.md`
    - 照着门禁卡的清单和 prompt 走
 
-5. **从 prompts/ 找对应阶段的 prompt**
-   - 立项阶段用：`prompts/最实用的AI对话技巧.md` 中的"挖掘型"prompt
+5. **从 docs/全流程AI对话Prompt模板库.md 找对应阶段的 prompt**
+   - 立项阶段用：第 1 部分的"项目启动 prompt"
    - 直接复制 → 替换 `[方括号]` 内容 → 发给 AI
 
 6. **初始化 Git**
@@ -158,16 +156,16 @@ Vibe_Coding/
    - 哪个 Skill 没覆盖到这次的坑？→ 加规则
    - 哪个 Skill 的规则不够强？→ 强化
    - 文件位置：知识库 `skills/` 目录
-3. **反哺 prompts/**
+3. **反哺 Prompt 模板库**
    - 哪个阶段的 prompt 不好用？→ 改进
    - 缺哪个 prompt？→ 新增
-   - 文件位置：知识库 `prompts/` 目录
+   - 文件位置：`docs/全流程AI对话Prompt模板库.md`
 4. **写复盘报告**（可放进知识库 `docs/` 或项目根目录）
 5. **更新 PROJECT_STATUS.md 的「下次项目提醒」**
 6. **知识库 Git 提交**：
    ```powershell
    cd e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding
-   git add skills/ prompts/
+   git add skills/ docs/
    git commit -m "docs: 反哺 N 条新经验到知识库"
    git push
    ```
@@ -242,13 +240,9 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 ## Prompts 怎么用
 
-### 两种 prompts 资源
+### Prompt 资源
 
-1. **`prompts/最实用的AI对话技巧.md`**：17 条高频技巧 + 8 个模板
-   - 用于：日常对话遇到问题时查
-   - 用法：翻到对应技巧，照着改
-
-2. **`docs/全流程AI对话Prompt模板库.md`**：50+ 个按阶段组织的 prompt
+**`docs/全流程AI对话Prompt模板库.md`**：包含 17 条高频对话技巧 + 50+ 个按阶段组织的 prompt 模板
    - 用于：进入某个阶段时批量取用
    - 用法：翻到对应阶段部分，复制 prompt
 
@@ -301,9 +295,8 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | `门禁卡-业务门.md` | 业务门操作清单 | 进入业务门时翻 |
 | `门禁卡-上线门.md` | 上线门操作清单 | 进入上线门时翻 |
 | `项目复盘模板.md` | 项目复盘模板 | 项目上线后填写，反哺 Skill 库的依据 |
-| `架构决策记录模板.md` | 架构决策记录模板 | 重大技术决策时使用（不是每个选型都写） |
-| `开发任务模板.md` | 开发任务模板 | 业务模块开发时使用，确保范围清晰、验收明确 |
 | `模块清单模板.md` | 模块清单 | 业务门期间维护，跟踪已完成/正在开发/待开发模块 |
+| `接手项目第一天操作清单.md` | 接手项目检查清单 | 接手项目或项目状态不清时使用 |
 
 ### PROJECT_STATUS.md 的 6 个区域
 
@@ -323,7 +316,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 4. **常见遗漏项**：踩坑提醒
 5. **配套文档链接**：需要详细操作时翻
 
-### 3 个新增模板的使用说明
+### 模板使用说明
 
 #### 项目复盘模板 — 什么时候用、怎么用
 
@@ -336,28 +329,6 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | **存放位置** | 项目根目录 `docs/项目复盘报告.md`（不复制到新项目） |
 | **核心要求** | 每条新增规则必须标注来源：`[日期] 规则描述 — 来源：XX 项目 XX 阶段 XX 问题` |
 
-#### 架构决策记录模板 — 什么时候用、怎么用
-
-| 项目 | 说明 |
-|---|---|
-| **何时用** | 遇到**方向性大决策**时（数据库选型、架构大转向、核心框架替换） |
-| **不用时** | 普通技术选型不需要写 ADR（选型文档里"唯一推荐 + 不选理由"就够了） |
-| **怎么用** | 让 AI 按模板输出多方案对比矩阵 + 推荐理由 + 风险分析 |
-| **跟随流程** | 手册第 2 章（技术选型）或任何阶段遇到重大决策 → 用此模板存档 |
-| **存放位置** | 项目根目录 `docs/decisions/YYYY-MM-DD-标题.md` |
-| **判断标准** | 问自己："如果半年后有人问为什么选这个方案，我能从这份文档里找到答案吗？" |
-
-#### 开发任务模板 — 什么时候用、怎么用
-
-| 项目 | 说明 |
-|---|---|
-| **何时用** | 第 8 阶段（业务模块开发），每个模块开始前 |
-| **谁主导** | AI 起草，你确认 |
-| **怎么用** | 让 AI 按模板输出：任务目标 / 范围锁定 / 依赖 / 验收标准 / 实施计划 |
-| **跟随流程** | 手册第 8 章 → 对话挖掘期 → 按模板输出实施计划 → 确认后进入执行交付期 |
-| **存放位置** | 可暂存对话里（简单模块），复杂模块落盘到 `docs/tasks/模块名.md` |
-| **核心价值** | 防止 AI 一口气做完所有功能，强制拆轮次、锁范围、定验收 |
-
 #### 模块清单模板 — 什么时候用、怎么用
 
 | 项目 | 说明 |
@@ -368,6 +339,17 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | **跟随流程** | 手册第 8 章 → 每完成一个模块 → 更新模块清单 → 同步 PROJECT_STATUS.md |
 | **存放位置** | 项目根目录 `docs/模块清单.md`（不复制到新项目，每个项目独立维护） |
 | **核心价值** | 让 AI 和你都知道"做到哪了"，避免重复开发或遗漏模块 |
+
+#### 接手项目第一天操作清单 — 什么时候用、怎么用
+
+| 项目 | 说明 |
+|---|---|
+| **何时用** | 接手别人的项目 / 自己做到一半忘记了 / 项目状态不清时 |
+| **谁主导** | 你主导，AI 辅助盘点 |
+| **怎么用** | 按清单逐项检查：判断项目状态 → 盘点现状 → 反推文档 → 建立 PROJECT_STATUS.md |
+| **跟随流程** | 第 1 章决策树 → 对应抢救流程 → 建立状态追踪 → 从当前门禁继续 |
+| **存放位置** | 知识库 `templates/` 目录（不复制到新项目） |
+| **核心价值** | 避免接手项目时一头雾水，系统化盘点和抢救 |
 
 ---
 
@@ -408,7 +390,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 │
 ├─ 项目上线了？
 │   └─ 整理踩坑清单
-│      反哺 skills/ 和 prompts/
+│      反哺 skills/ 和 Prompt 模板库
 │      知识库 git push
 │
 └─ 不知道在哪个阶段？
@@ -439,12 +421,10 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | 查某个阶段的详细操作 | [AI协作全流程操作手册](docs/AI协作全流程操作手册.md) |
 | 找可直接复制的 prompt | [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) |
 | 查某个阶段的快速步骤 | [全流程速查](workflows/全流程速查.md) |
-| 查 17 条对话技巧 | [最实用的AI对话技巧](prompts/最实用的AI对话技巧.md) |
 | 看某个 Skill 的方法论 | [skills/ 目录](skills/) |
 | 溯源某条规则的来源 | [sources/_archive/](sources/_archive/) |
 | 项目复盘反哺 | [项目复盘模板](templates/项目复盘模板.md) |
-| 重大技术决策存档 | [架构决策记录模板](templates/架构决策记录模板.md) |
-| 开发任务拆解 | [开发任务模板](templates/开发任务模板.md) |
+| 接手项目或状态不清 | [接手项目第一天操作清单](templates/接手项目第一天操作清单.md) |
 
 ---
 
@@ -454,7 +434,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 ```powershell
 cd e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding
-git add skills/ prompts/
+git add skills/ docs/
 git commit -m "docs: 反哺 N 条新经验"
 git push
 ```

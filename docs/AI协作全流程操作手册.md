@@ -1360,8 +1360,7 @@ flowchart TD
 
 > 配套文档：
 > - [项目可视化流程手册.md](./项目可视化流程手册.md) — 走哪条路
-> - [全流程AI对话Prompt模板库.md](./全流程AI对话Prompt模板库.md) — 可直接复制的 prompt 工具箱
-> - [../prompts/最实用的AI对话技巧.md](../prompts/最实用的AI对话技巧.md) — 17 条高频对话技巧
+> - [全流程AI对话Prompt模板库.md](./全流程AI对话Prompt模板库.md) — 可直接复制的 prompt 工具箱（含 17 条高频对话技巧）
 
 
 
