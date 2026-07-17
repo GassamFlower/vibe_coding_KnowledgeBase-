@@ -32,7 +32,7 @@ Vibe_Coding/
 |---|---|---|---|
 | `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 复制到新项目根目录 |
 | `skills/` | 9 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
-| `docs/` | 3 篇深度手册（含 Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
+| `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
 | `sources/_archive/` | 16 篇原始笔记 | **需要溯源时** | 偶尔翻 |
 
@@ -417,6 +417,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 | 我想做什么 | 翻哪个文档 |
 |---|---|
+| **第一次用这套知识库** | [使用教程与导航手册](docs/使用教程与导航手册.md) |
 | 判断项目处于什么状态 | [项目可视化流程手册](docs/项目可视化流程手册.md) |
 | 查某个阶段的详细操作 | [AI协作全流程操作手册](docs/AI协作全流程操作手册.md) |
 | 找可直接复制的 prompt | [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) |
