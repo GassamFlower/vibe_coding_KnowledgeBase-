@@ -25,9 +25,10 @@ Go 后端（大脑）                 IDE（开发者的手）            开发
 ```
 companion/
 ├── modules/            信息模块（独立 .md，Go 拼装）
-│   ├── 00-state-judgment.md
-│   ├── 01-idea.md … 05-constitution.md
-│   └── gate-立项门.md
+│   ├── 00-state-judgment.md   cross：5 种项目状态判断
+│   ├── 00-cost-context.md     cross：成本与心力管理（每次会话注入）
+│   ├── 01-idea.md … 15-release.md   phase：14 阶段（stage 1-15）
+│   └── gate-立项门.md … gate-上线门.md   gate：4 道门禁硬指标
 ├── templates/          渲染模板
 │   ├── AGENTS.md.tmpl
 │   └── PROJECT_STATUS.md.tmpl
@@ -53,23 +54,23 @@ go run ./generator --project /path/to/your/project --stage 1
 
 ## 加一个信息模块
 
-在 `modules/` 新建 `06-deploy.md`：
+在 `modules/` 新建 `16-xxx.md`（示例，stage 编号延续 1-15 之后或插入对应阶段）：
 
 ```markdown
 <!--
-id: 06-deploy
-stage: 6
+id: 16-xxx
+stage: 16
 type: phase
-title: 阶段6 部署
-next: 上线门（阶段N）
+title: 阶段16 新阶段
+next: 下一个阶段
 -->
-# 阶段6：部署
+# 阶段16：新阶段
 ...
 ```
 
 生成器按 `stage` 自动纳入对应阶段的 AGENTS.md，零改码。
 
-## 状态 / 阶段 / 门禁（MVP 范围）
+## 状态 / 阶段 / 门禁（stage 1-15 全流程）
 
 | stage | 阶段 | 类型 | 临近门禁 |
 |-------|------|------|----------|
@@ -78,3 +79,15 @@ next: 上线门（阶段N）
 | 3 | 选型 | phase | — |
 | 4 | 架构设计 | phase | — |
 | 5 | 宪法 | phase | 立项门 |
+| 6 | 实施真源文档拆解 | phase | — |
+| 7 | 前端骨架 | phase | — |
+| 8 | 数据库设计 | phase | — |
+| 9 | 后端骨架 | phase | — |
+| 10 | 后端联调 | phase | — |
+| 11 | 架构验收 | phase | 架构门 |
+| 12 | 业务模块开发 | phase | — |
+| 13 | 后端安全审查 | phase | 业务门 |
+| 14 | 上线前总验收 | phase | — |
+| 15 | 上线 + Skill 反哺 | phase | 上线门 |
+
+> 阶段编号说明：生成器用自身编号（stage 1-15），与知识库 14 阶段模型偏移 +1（gen N = 14模型 N-1，N≥6），为兼容既有 01-05 模块沿用。cross 模块每个 stage 都注入；gate 模块在抵达对应 stage（5/11/13/15）时注入硬指标正文。

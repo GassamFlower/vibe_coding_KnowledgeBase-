@@ -151,6 +151,49 @@ flowchart LR
 
 > 一句话：**14 阶段是参考路径，不是铁律。但"先想后做、文档先行、分块验收"是铁律。** 根据项目形态合并/简化阶段，但不要跳过"想清楚"这一步。
 
+### 0.5 工作台工具：生成器（companion）+ 智能体（agent）
+
+除了"人工翻手册 + 复制 prompt"，知识库还有两个工程化工具，把规则自动注入/自动执行。**它们是辅助不是替代**——门禁卡、Prompt 模板库仍然是你判断和对话的主工具。
+
+#### ① companion/ — 一键生成工作台文件（推荐，零成本）
+
+`companion/` 是一个生成器：读 `modules/` 里的信息模块，按当前阶段渲染出 `AGENTS.md` + `PROJECT_STATUS.md` 到你的项目，IDE 里的 AI 每次会话自动读。
+
+```bash
+# 在目标项目根目录执行（stage 为当前阶段编号 1-15）
+python <知识库路径>/Vibe_Coding/companion/generator/main.py --project . --stage 1
+```
+
+**stage 编号与门禁对应**（注意：这是生成器自身编号，和上面的 14 阶段模型偏移 +1）：
+
+| 生成器 stage | 对应门禁 | 门禁硬指标何时注入 |
+|---|---|---|
+| 1-5 | 立项门 | stage 5 到达时注入立项门 7 项硬指标 |
+| 6-11 | 架构门 | stage 11 到达时注入架构门 7 项硬指标 |
+| 12-13 | 业务门 | stage 13 到达时注入业务门 8 项硬指标 |
+| 14-15 | 上线门 | stage 15 到达时注入上线门 7 项硬指标 |
+
+生成的 `AGENTS.md` 自带三个固定段：**状态判断（5 种状态随时用）** + **成本与心力（每次会话都注意，横切层）** + **门禁状态（临近门禁时自动带出硬指标清单）**。横切层意味着"上下文膨胀 / 心力消耗"的提醒不用你每阶段手动加，每次开会话 AI 都能看到。
+
+#### ② agent/ — 工程化智能体（可选，想要"自动跑流程"时用）
+
+`agent/` 把方法论固化成能"自动执行流程 + 自动收证据 + 自动判门禁"的智能体（`SKILL.md` 为主入口）。当前 **v0.4.0 已打通全量 4 门禁闭环**：
+
+| 闭环 | 对应文件 | 覆盖阶段 |
+|---|---|---|
+| 立项门闭环 | `workflows/立项门闭环.md` + `gate-checks/立项门.md` | 1-4 |
+| 架构门闭环 | `workflows/架构门闭环.md` + `gate-checks/架构门.md` | 5-10 |
+| 业务门闭环 | `workflows/业务门闭环.md` + `gate-checks/业务门.md` | 11-12 |
+| 上线门闭环 | `workflows/上线门闭环.md` + `gate-checks/上线门.md` | 13-14 |
+
+**两种用法**：
+- **WorkBuddy 里用**：把 `agent/` 复制到 `~/.workbuddy/skills/vibe-coding-engineer/`，对话里说"我想做个 XX 项目"自动触发；说"帮我验收，能不能过架构门"就走对应 `gate-checks/` 自动收集证据。
+- **项目里用**：复制 `agent/` 到项目根目录，在项目的 `AGENTS.md` / `CLAUDE.md` 引用 `SKILL.md`；智能体按 `state-machine.md` 读 `PROJECT_STATUS.agent.md` 定位当前阶段，推进时逐项调用门禁验收。
+
+**状态流转**：立项门通过 → `current_phase=5` → 架构门通过 → `current_phase=11` → 业务门通过 → `current_phase=13` → 上线门通过 → 项目收官（`current_phase=14`，state=4）。
+
+> 演进原则：知识库（docs/skills/templates/workflows）是单一来源；`agent/` 只引用不复制，`companion/` 只生成不篡改。知识库更新，两者自动继承。
+
 ---
 
 ## 第 1 章：阶段 1 — 项目立项

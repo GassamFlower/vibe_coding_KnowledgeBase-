@@ -373,11 +373,17 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 ```bash
 python companion/generator/main.py --project <你的项目目录> --stage 1
 ```
+`--stage` 支持 **1-15 全流程**（1-5 立项门 / 6-11 架构门 / 12-13 业务门 / 14-15 上线门），抵达门禁阶段（5/11/13/15）时会自动把对应 gate 模块的硬指标注入 `AGENTS.md`。
 生成的 `AGENTS.md` 已自带「成本与心力（每次会话都注意）」段——这是把"上下文膨胀 / 心力消耗"管理做成**横切层（cross）**自动注入每个阶段，不用你每阶段手动加。Go 版（`generator/main.go`）用于接入你的 DC Ops 后端。
 
 ### agent/ — 工程化智能体（可选）
 
-`agent/` 是知识库的**可执行层**：把静态方法论固化成能"自动跑流程 + 自动收证据 + 自动判门禁"的智能体（`SKILL.md` 为主入口）。当前 v0.1.0 只实现**立项门完整闭环**，后续版本逐步补齐架构门 / 业务门 / 上线门。
+`agent/` 是知识库的**可执行层**：把静态方法论固化成能"自动跑流程 + 自动收证据 + 自动判门禁"的智能体（`SKILL.md` 为主入口）。当前 **v0.4.0 已实现全量 4 门禁完整闭环**：
+- **立项门**：立项 → 选型 → 架构设计 → 宪法 → 自动验收
+- **架构门**：真源文档拆解 → 前端/数据库/后端骨架 → 联调 → 架构验收 → 自动验收
+- **业务门**：业务模块开发（多轮）→ 安全审查 → 自动验收
+- **上线门**：上线前总验收 → 上线 → Skill 反哺 → 自动验收
+- 对应 `gate-checks/`（4 道门禁自动验收）+ `workflows/`（4 个闭环流程）+ `state-machine.md`（状态流转）
 - 想在 WorkBuddy 里用：把 `agent/` 复制到 `~/.workbuddy/skills/vibe-coding-engineer/`，自动识别 `SKILL.md`
 - 想在单个项目里用：复制 `agent/` 到项目根目录，在 `AGENTS.md` / `CLAUDE.md` 引用 `SKILL.md`
 
