@@ -23,7 +23,9 @@ Vibe_Coding/
 ├── workflows/         ← 流程速查（查证用）
 ├── skills/            ← 方法论库（导入到项目用）
 ├── templates/         ← 工作台模板（复制到项目用）
-└── sources/_archive/  ← 原始笔记归档（溯源用）
+├── sources/           ← 原始笔记 + 归档（溯源用）
+├── companion/         ← 工作台生成器（一键生成 AGENTS.md / PROJECT_STATUS.md）
+└── agent/             ← 工程化智能体（可自动跑流程与门禁）
 ```
 
 ### 每个目录的定位
@@ -31,12 +33,14 @@ Vibe_Coding/
 | 目录 | 内容 | 什么时候用 | 怎么用 |
 |---|---|---|---|
 | `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 复制到新项目根目录 |
-| `skills/` | 9 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
+| `skills/` | 11 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
 | `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
-| `sources/_archive/` | 16 篇原始笔记 | **需要溯源时** | 偶尔翻 |
+| `sources/` | 2 篇理论来源 + `_archive/` 16 篇原始笔记 | **需要溯源时** | 偶尔翻 |
+| `companion/` | 工作台生成器（modules/ + 模板 + 生成器） | **建项目 / 换阶段时** | 跑 `main.py` 生成 AGENTS.md |
+| `agent/` | 工程化智能体（可执行层，可选） | **想自动化流程时** | 复制到 skills 目录或项目根目录 |
 
-**核心原则**：日常只碰 `templates/` 和 `skills/`，其他目录偶尔翻。
+**核心原则**：日常只碰 `templates/` 和 `skills/`；`companion/` 在切换阶段时跑一次即可；`agent/`、`docs/`、`workflows/`、`sources/` 偶尔翻。
 
 ---
 
@@ -222,14 +226,16 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 入口文件只写一行引用宪法，不复制内容（避免多处不同步）。
 
-### 9 个 Skill 的用途
+### 11 个 Skill 的用途
 
 | Skill 文件 | 什么时候用 |
 |---|---|
 | `brainstorming.md` | 头脑风暴、需求挖掘 |
 | `writing-plans.md` | 写开发计划、模块拆分 |
+| `project-breakdown.md` | 立项后拆功能清单（按角色/流程/模块三维度） |
 | `systematic-debugging.md` | 系统化调试 Bug |
-| `verification-before-completion.md` | 宣布"完成"之前必走 |
+| `testing-strategy.md` | 业务模块完成后、宣布完成前的测试六步法 |
+| `verification-before-completion.md` | 宣布"完成"之前必走（在 testing-strategy 之后） |
 | `requesting-code-review.md` | 代码审查 |
 | `browser-verification.md` | 浏览器验证前端 |
 | `database-design.md` | 设计数据库 |
@@ -350,6 +356,32 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | **跟随流程** | 第 1 章决策树 → 对应抢救流程 → 建立状态追踪 → 从当前门禁继续 |
 | **存放位置** | 知识库 `templates/` 目录（不复制到新项目） |
 | **核心价值** | 避免接手项目时一头雾水，系统化盘点和抢救 |
+
+---
+
+## 工作台生成器（companion）与工程化智能体（agent）
+
+知识库里还有两个"工程化"目录，把"人工翻门禁卡 + 复制 prompt"升级成"自动生成 / 自动执行"。
+
+### companion/ — 一键生成工作台文件
+
+`companion/` 是一个**生成器**：读 `modules/` 里的信息模块（按 `stage` / `type` 分类，含 `cross` 横切层），渲染出两份文件给 IDE 里的 LLM 读：
+- `AGENTS.md`：当前阶段 + 下一步 + 状态判断 + **成本与心力提醒（每次会话注入）** + 门禁状态
+- `PROJECT_STATUS.md`：项目状态卡
+
+**用法（Python 原型，本环境可直接跑）**：
+```bash
+python companion/generator/main.py --project <你的项目目录> --stage 1
+```
+生成的 `AGENTS.md` 已自带「成本与心力（每次会话都注意）」段——这是把"上下文膨胀 / 心力消耗"管理做成**横切层（cross）**自动注入每个阶段，不用你每阶段手动加。Go 版（`generator/main.go`）用于接入你的 DC Ops 后端。
+
+### agent/ — 工程化智能体（可选）
+
+`agent/` 是知识库的**可执行层**：把静态方法论固化成能"自动跑流程 + 自动收证据 + 自动判门禁"的智能体（`SKILL.md` 为主入口）。当前 v0.1.0 只实现**立项门完整闭环**，后续版本逐步补齐架构门 / 业务门 / 上线门。
+- 想在 WorkBuddy 里用：把 `agent/` 复制到 `~/.workbuddy/skills/vibe-coding-engineer/`，自动识别 `SKILL.md`
+- 想在单个项目里用：复制 `agent/` 到项目根目录，在 `AGENTS.md` / `CLAUDE.md` 引用 `SKILL.md`
+
+> 演进原则：知识库（`docs/skills/templates/workflows`）是单一来源；`agent/` 只引用不复制，`companion/` 只生成不篡改。知识库更新，两者自动继承。
 
 ---
 

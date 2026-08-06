@@ -1,6 +1,6 @@
 # Skills 技能说明书
 
-> 9 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
+> 10 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
 
 ---
 
@@ -38,7 +38,11 @@
 - **何时使用**：前端页面/交互/路由改动后；用户说"帮我看看页面""打开看看效果""验证一下前端"；涉及响应式、跨端单位（如小程序 rpx）问题时
 - **作用**：避免 AI 只看代码就说"前端做好了"。让前端验收落到看得见的实际渲染、交互、状态反馈上
 
-### 9. verification-before-completion（完成前验证）
+### 9. testing-strategy（测试六步法）
+- **何时使用**：一个业务模块/功能开发完成，准备验收前；用户说"测一下""测试这个功能""跑一遍"；过业务门前；`verification-before-completion` 之前——先测试再验收
+- **作用**：防止 AI 用"已经测过了""功能正常"糊弄。让测试落到真实有效的证据上。同时拦住两种极端：AI 写一堆假测试（代码都改错了测试还绿）和 AI 堆无用测试（关键路径没测深、次要功能测一堆）
+
+### 10. verification-before-completion（完成前验证）
 - **何时使用**：AI 准备说"已完成""做好了""可以了"；用户问"做完了吗""能用了吗"；任何一个阶段、功能、修复准备收尾
 - **作用**：防止 AI 写完代码就直接宣布完成。让"完成"必须有可检查的证据，而不是结论
 
@@ -51,7 +55,7 @@ brainstorming → writing-plans → database-design → backend-architecture-acc
      ↓
 backend-security-review → requesting-code-review → systematic-debugging
      ↓
-browser-verification → verification-before-completion
+browser-verification → testing-strategy → verification-before-completion
 ```
 
 ## 核心原则
@@ -59,7 +63,8 @@ browser-verification → verification-before-completion
 - **每个技能都有明确的"何时使用"和"解决什么问题"**——不要在不该用的时候用
 - **每个技能都有"约束"**——告诉 AI 什么不能做，比告诉它做什么更重要
 - **每个技能都要求"证据"**——没有证据的完成不算完成
+- **测试在验收之前**——`testing-strategy` 负责"怎么测出证据"，`verification-before-completion` 负责"按清单核对证据"
 
 ---
 
-_最后更新：2026-07-04_
+_最后更新：2026-07-23_
