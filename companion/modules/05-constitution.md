@@ -9,7 +9,7 @@ next: 通过立项门 → 进入架构门
 
 目标：定下项目不可违背的硬规则，让 AI 和人都守纪律。
 
-交付物 `CONSTITUTION.md` / AGENTS.md 规则段：
+交付物 `AGENT_CONSTITUTION.md`（项目根目录，不在 docs/，不参与前缀）/ AGENTS.md 规则段：
 - 命名 / 目录 / 提交规范
 - 禁止项（如禁止在生产提交调试代码）
 - AI 行为边界（哪些事 AI 不能擅自做）
