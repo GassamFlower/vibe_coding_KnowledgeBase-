@@ -270,6 +270,59 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\agent\templates\PROJECT
 
 > **核心心法**：PROJECT_STATUS.md 是**你的施工日志 + AI 的记忆锚点**。你不更新它，AI 第二天就忘了进度；你更新了它，AI 每次开会话都能从文件恢复上下文。改它永远比翻手册快。
 
+### 0.7 新项目工作台初始化（复制什么、不复制什么）
+
+**新项目第一天只复制 2 样东西进项目**，其余全部留在知识库、按需翻。下面把「复制 / 不复制 / 什么时候 / 作用」一次说清，含容易踩的盲区。
+
+#### ✅ 必须复制到项目根目录（2 样）
+
+| 复制什么 | 命令（在项目根目录执行） | 什么时候 | 作用 |
+|---|---|---|---|
+| `skills/` 整个目录 | `Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" ".\skills\" -Recurse` | 项目第一天 | **AI 的方法论规则**。不复制，AI 在项目里读不到任何 skill，验证/审查/测试全失效 |
+| `PROJECT_STATUS.md` | `Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\PROJECT_STATUS.md" ".\PROJECT_STATUS.md"` | 项目第一天 | **你的施工日志 + AI 记忆锚点**，每天维护 |
+
+> 想更省事：用生成器一步生成 `AGENTS.md` + `PROJECT_STATUS.md`（见 0.5 ①），但 `skills/` 仍要单独复制。
+
+#### ❌ 不复制、留在知识库按需翻（5 样）
+
+| 不复制什么 | 什么时候用 | 为什么留在知识库 |
+|---|---|---|
+| 4 张门禁卡（`templates/门禁卡-*.md`） | 过对应门禁时打开看 | **门禁卡会随知识库更新迭代**，复制到项目就冻结成旧版，永远不同步。项目里只有 PROJECT_STATUS 里的验收清单副本 |
+| `docs/` 4 篇手册 | 遇到盲区时翻 | 查证资料，不需要进项目 |
+| `workflows/全流程速查.md` | 快速回顾阶段时翻 | 同上 |
+| `agent/`（可选） | 想要智能体自动跑流程时 | 按需复制，不是默认工作台 |
+| `sources/`、`companion/` | 溯源 / 重新生成时用 | 知识库工具，不进项目 |
+
+#### 🔄 复制模板但改名放 docs/（2 样，到阶段才做）
+
+| 模板 | 什么时候 | 复制成 |
+|---|---|---|
+| `模块清单模板.md` | 进入业务门（阶段 11）时 | 项目 `docs/n-模块清单.md` |
+| `项目复盘模板.md` | 上线后（阶段 14） | 项目 `docs/q-项目复盘报告.md` |
+
+> 这两个不是第一天复制，是**到对应阶段才生成**，且要用带前缀的文件名（见 0.3 命名规范）。
+
+#### ⚠️ 盲区（你没问但一定会踩）
+
+1. **门禁卡不要复制进项目**——这是最常见的误解。项目里只需 PROJECT_STATUS 里的「验收清单」，门禁卡本体留在知识库，改版自动生效。
+2. **`AGENT_CONSTITUTION.md` 是"创建"不是"复制"**——宪法必须结合项目真实情况定制（阶段 4 做），不是把某个模板文件拷过去。
+3. **IDE 入口文件只写一行引用宪法**——`AGENTS.md`/`CLAUDE.md` 等入口文件里写"本项目遵守 AGENT_CONSTITUTION.md"，不要复制宪法内容，否则多处不同步。
+4. **`db/`、`migrations/` 等目录按项目技术栈自建**——知识库不提供代码骨架模板，文档（`docs/` 前缀文件）才是知识库的产出物。
+5. **`skills/` 复制一次后不用管**——它是规则库，项目推进中不修改；发现规则要更新时，改的是知识库本体，反哺流程见阶段 14。
+
+#### 第一天初始化完整动作（复制后）
+
+```powershell
+git init
+Copy-Item ... skills/  # 见上表
+Copy-Item ... PROJECT_STATUS.md
+# （可选）生成器生成 AGENTS.md + PROJECT_STATUS.md
+git add .
+git commit -m "chore: 项目初始化"
+```
+
+> 初始化完成标准：项目根目录有 `skills/` + `PROJECT_STATUS.md`（+ 可选 `AGENTS.md`），git 已 init 并首次提交。之后每天只碰 PROJECT_STATUS.md（见 0.6）。
+
 ---
 
 ## 第 1 章：阶段 1 — 项目立项
