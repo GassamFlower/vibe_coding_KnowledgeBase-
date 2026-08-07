@@ -211,6 +211,65 @@ python <知识库路径>/Vibe_Coding/companion/generator/main.py --project . --s
 
 > 演进原则：知识库（docs/skills/templates/workflows）是单一来源；`agent/` 只引用不复制，`companion/` 只生成不篡改。知识库更新，两者自动继承。
 
+### 0.6 PROJECT_STATUS.md — 工作台日常操作
+
+**PROJECT_STATUS.md 是你每天唯一要维护的工作台文件**（放在项目根目录）。日常开发只看它、只更新它，不翻知识库。它由 7 个区域组成：
+
+| 区域 | 内容 | 什么时候动 |
+|---|---|---|
+| 项目信息 | 项目名 / 开始日期 / 当前门禁 | 初始化填一次 |
+| 当前门禁 | 正在过哪个门（立项/架构/业务/上线） | 门禁推进时更新 |
+| 验收清单 | 从门禁卡复制的勾选项 | 每完成一项勾一项 |
+| 下一步 | 当前要做的 ≤3 件事 | 每天早上 / 每轮结束更新 |
+| 工作日志 | 日期 + 做了什么 + 问题 | 每次工作结束追加一行 |
+| 规则变更记录 | 改真源文档 / 宪法时记录 | 每次规则变更时追加 |
+| 踩坑记录 | 踩坑 + 根因 + 是否反哺 | 每次踩坑时追加 |
+
+#### 初始化（3 种方式，选 1 个）
+
+```powershell
+# 方式 A：从知识库复制模板（最常用）
+Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\PROJECT_STATUS.md" ".\PROJECT_STATUS.md"
+
+# 方式 B：用生成器生成（会同时生成 AGENTS.md + PROJECT_STATUS.md，stage=当前阶段 1-15）
+python e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\companion\generator\main.py --project . --stage 1
+
+# 方式 C：智能体版（agent 模式，机器可读字段 + 4 门禁验收清单，智能体自动维护）
+Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\agent\templates\PROJECT_STATUS.agent.md" ".\PROJECT_STATUS.md"
+```
+
+初始化后填「项目信息」，从门禁卡复制「验收清单」进来，`git add PROJECT_STATUS.md && git commit -m "chore: 初始化项目状态文件"`。
+
+#### 每天早上（2 分钟）
+
+1. 打开 `PROJECT_STATUS.md`
+2. 看「当前门禁」→ 知道自己正在过哪个门
+3. 看「下一步」→ 今天做什么
+4. 看「工作日志」最后一行 → 上次做到哪
+
+#### 每次工作结束（收尾 5 步）
+
+1. 勾选「验收清单」里完成项
+2. 「工作日志」追加一行：`| 日期 | 做了什么 | 问题 |`
+3. 更新「下一步」（清掉做完的，写下轮要做的 ≤3 项）
+4. 如有规则变更 → 「规则变更记录」追加一行
+5. Git 提交：`git commit -m "feat: 完成 XX（含 XX 接口）"`
+
+#### 门禁推进时
+
+1. 验收通过 → 更新「当前门禁」为下一道门 + 填「进入时间」
+2. 从下一张门禁卡复制新的「验收清单」进来（旧清单保留在下方或归档）
+3. Git 提交：`git commit -m "chore: 通过 XX 门"`
+4. 提示 AI：让它读更新后的 PROJECT_STATUS.md 继续
+
+#### Git 提交节奏（配合状态文件）
+
+- **每次状态文件更新 = 一次提交**：状态推进、验收勾选、日志追加都随功能提交一起走，不要攒
+- **门禁通过必须单独提交**：`chore: 通过 XX 门`，作为可回滚的里程碑点
+- **改坏了就回退**：`git log --oneline` 找最近稳定提交 → `git reset --hard <commit-id>`
+
+> **核心心法**：PROJECT_STATUS.md 是**你的施工日志 + AI 的记忆锚点**。你不更新它，AI 第二天就忘了进度；你更新了它，AI 每次开会话都能从文件恢复上下文。改它永远比翻手册快。
+
 ---
 
 ## 第 1 章：阶段 1 — 项目立项

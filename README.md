@@ -304,7 +304,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | `模块清单模板.md` | 模块清单 | 业务门期间维护，跟踪已完成/正在开发/待开发模块 |
 | `接手项目第一天操作清单.md` | 接手项目检查清单 | 接手项目或项目状态不清时使用 |
 
-### PROJECT_STATUS.md 的 6 个区域
+### PROJECT_STATUS.md 的 7 个区域
 
 1. **项目信息**：项目名、开始日期、当前门禁
 2. **当前门禁**：正在过哪个门、什么时候进入的
