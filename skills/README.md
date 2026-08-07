@@ -1,6 +1,6 @@
 # Skills 技能说明书
 
-> 10 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
+> 11 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
 
 ---
 
@@ -14,49 +14,67 @@
 - **何时使用**：立项文档已生成，准备进入开发；用户说"帮我写开发计划""接下来怎么做""拆一下任务"；一个新模块准备开始前
 - **作用**：把需求拆成可执行、可验收的任务，避免 AI 一口气写一堆功能导致项目漂移
 
-### 3. database-design（数据库设计）
+### 3. project-breakdown（功能清单拆解与阶段计划）
+- **何时使用**：立项文档生成后、进入开发前；用户说"帮我拆一下功能""先做哪些功能""范围太大不知道从哪下手"；项目范围需要从"大概做什么"细化为"具体做什么"
+- **作用**：把立项文档拆成技术可执行的功能项。按**角色 / 业务流程 / 模块**三维度拆解，复杂功能（订单流转、支付退款、权限系统）单独拆专门文档并在清单里留索引，再按优先级排成有序开发阶段
+
+### 4. database-design（数据库设计）
 - **何时使用**：用户说"帮我设计数据库""建几张表""这个功能需要什么表"；前端骨架跑通，准备进入数据库阶段；已有数据库结构混乱，需要重新梳理
 - **作用**：防止 AI 上来就建表。先把业务对象、关系、范式、字段规范定清楚，再生成设计文件，最后才建表
 
-### 4. backend-architecture-acceptance（后端架构验收）
+### 5. backend-architecture-acceptance（后端架构验收）
 - **何时使用**：AI 报告"后端骨架已搭好，可以开始写业务代码"；用户问"这套架构能用吗""稳不稳""可以开始写业务了吗"；后端骨架阶段收尾
 - **作用**：避免 AI 用"已经完成"糊弄过去。让验收落到证据上：规则来源、对应文件、验证方式、实际结果、是否通过。没有证据就是未验收
 
-### 5. backend-security-review（后端安全审查）
+### 6. backend-security-review（后端安全审查）
 - **何时使用**：后端骨架验收通过、开始写业务接口；涉及登录、注册、修改密码、支付、订单、删除、权限相关功能；上线前最后一次安全检查；用户说"帮我做安全审查""看看有没有漏洞""这接口安全吗"
 - **作用**：防止 AI 用"已经做了安全处理"敷衍。把风险、规则、处理位置、验证证据一项项交出来。看不懂的安全说明本身就不合格
 
-### 6. requesting-code-review（代码审查）
+### 7. requesting-code-review（代码审查）
 - **何时使用**：一个功能/模块/修复完成后准备合并或提交前；上线前最后一次审查；用户说"帮我审一下代码""看看有没有问题""检查一下风险"
 - **作用**：用另一个视角检查风险，避免写代码的视角盲区。让 AI 不只看"功能跑没跑通"，还看长期可维护性和潜在风险
 
-### 7. systematic-debugging（系统化调试）
+### 8. systematic-debugging（系统化调试）
 - **何时使用**：用户报告 bug、报错、行为异常；用户说"帮我修一下""这里有问题""跑不起来"；改了一个地方导致另一个地方出错
 - **作用**：防止 AI 凭直觉乱猜、打补丁、改着改着把项目改乱。核心原则：**不要猜，先找根因**
 
-### 8. browser-verification（浏览器验证）
+### 9. browser-verification（浏览器验证）
 - **何时使用**：前端页面/交互/路由改动后；用户说"帮我看看页面""打开看看效果""验证一下前端"；涉及响应式、跨端单位（如小程序 rpx）问题时
 - **作用**：避免 AI 只看代码就说"前端做好了"。让前端验收落到看得见的实际渲染、交互、状态反馈上
 
-### 9. testing-strategy（测试六步法）
+### 10. testing-strategy（测试六步法）
 - **何时使用**：一个业务模块/功能开发完成，准备验收前；用户说"测一下""测试这个功能""跑一遍"；过业务门前；`verification-before-completion` 之前——先测试再验收
 - **作用**：防止 AI 用"已经测过了""功能正常"糊弄。让测试落到真实有效的证据上。同时拦住两种极端：AI 写一堆假测试（代码都改错了测试还绿）和 AI 堆无用测试（关键路径没测深、次要功能测一堆）
 
-### 10. verification-before-completion（完成前验证）
+### 11. verification-before-completion（完成前验证）
 - **何时使用**：AI 准备说"已完成""做好了""可以了"；用户问"做完了吗""能用了吗"；任何一个阶段、功能、修复准备收尾
 - **作用**：防止 AI 写完代码就直接宣布完成。让"完成"必须有可检查的证据，而不是结论
 
 ---
 
-## 技能使用顺序
+## 技能使用顺序（按 4 道门禁归位）
 
 ```
-brainstorming → writing-plans → database-design → backend-architecture-acceptance
+【立项门】brainstorming → project-breakdown → writing-plans
      ↓
-backend-security-review → requesting-code-review → systematic-debugging
+【架构门】database-design → backend-architecture-acceptance
      ↓
-browser-verification → testing-strategy → verification-before-completion
+【业务门】browser-verification → backend-security-review → requesting-code-review
+     ↓
+【上线门】testing-strategy → verification-before-completion
+
+  ⚡ systematic-debugging：全程随时可用（一出 bug 就调它，不分门禁）
 ```
+
+## 技能 → 门禁速查
+
+| 门禁 | 主要用到的 Skill |
+|---|---|
+| 立项门 | brainstorming、project-breakdown、writing-plans |
+| 架构门 | database-design、backend-architecture-acceptance、browser-verification |
+| 业务门 | backend-security-review、requesting-code-review、testing-strategy |
+| 上线门 | testing-strategy、verification-before-completion |
+| 全程 | systematic-debugging（调试）、verification-before-completion（每次宣布"完成"前） |
 
 ## 核心原则
 
@@ -67,4 +85,17 @@ browser-verification → testing-strategy → verification-before-completion
 
 ---
 
-_最后更新：2026-07-23_
+## 怎么导入到项目
+
+skills/ 是给 **AI** 看的规则。不复制到项目根目录，AI 在新项目里读不到，就会回到"自由发挥"模式。
+
+```powershell
+# 在新项目根目录执行
+Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destination ".\skills\" -Recurse
+```
+
+导入后在项目 `AGENT_CONSTITUTION.md` 里引用（IDE 入口文件只写一行指向宪法，不复制内容）。详见 [操作手册 0.7](../docs/AI协作全流程操作手册.md)。
+
+---
+
+_最后更新：2026-08-07（补 project-breakdown，10 → 11 个技能）_
