@@ -33,7 +33,7 @@ agent/
 ├── templates/                   ← 智能体专用模板
 │   └── PROJECT_STATUS.agent.md  ← ✅ 智能体自动维护的状态文件
 ├── skills/                      ← 子能力引用（指向 ../../skills/）
-│   └── README.md                ← 说明：11 个方法论在 ../../skills/
+│   └── README.md                ← 说明：12 个方法论在 ../../skills/
 └── references/                  ← 精简版深度手册（指向 ../../docs/）
     └── README.md                ← 说明：4 篇手册在 ../../docs/
 ```
@@ -74,7 +74,7 @@ agent/ 的结构（状态机 + 门禁检查 + 工作流 + 模板）可以转化�
 ```
 Vibe_Coding/                    ← 知识库（单一来源）
 ├── docs/                       ← 深度手册（4 篇）
-├── skills/                     ← 11 个方法论（子能力来源）
+├── skills/                     ← 12 个方法论（子能力来源）
 ├── templates/                  ← 工作台模板（8 个）
 ├── workflows/                  ← 流程速查（1 篇）
 ├── sources/                    ← 原始笔记归档
@@ -94,7 +94,7 @@ Vibe_Coding/                    ← 知识库（单一来源）
 | Harness 支柱 | 知识库来源 | agent 实现 |
 |---|---|---|
 | 上下文管理 | docs/操作手册 + Prompt 模板库 | references/ + 动态 prompt 生成 |
-| 工具系统 | skills/ 11 个方法论 | skills/（引用 ../../skills/） |
+| 工具系统 | skills/ 12 个方法论 | skills/（引用 ../../skills/） |
 | 执行编排 | workflows/ 流程速查 | state-machine.md + workflows/ |
 | 评估观测 | templates/ 门禁卡 | gate-checks/ |
 | 状态记忆 | templates/ PROJECT_STATUS | templates/PROJECT_STATUS.agent.md |

@@ -33,7 +33,7 @@ Vibe_Coding/
 | 目录 | 内容 | 什么时候用 | 怎么用 |
 |---|---|---|---|
 | `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 复制到新项目根目录 |
-| `skills/` | 11 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
+| `skills/` | 12 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
 | `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
 | `sources/` | 2 篇理论来源 + `_archive/` 16 篇原始笔记 | **需要溯源时** | 偶尔翻 |
@@ -273,7 +273,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 入口文件只写一行引用宪法，不复制内容（避免多处不同步）。
 
-### 11 个 Skill 的用途
+### 12 个 Skill 的用途
 
 | Skill 文件 | 什么时候用 |
 |---|---|
@@ -288,6 +288,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | `database-design.md` | 设计数据库 |
 | `backend-architecture-acceptance.md` | 后端架构验收 |
 | `backend-security-review.md` | 后端安全审查 |
+| `frontend-security-review.md` | 前端安全审查（XSS / CSRF / 敏感信息 / 依赖 / 构建） |
 
 ---
 

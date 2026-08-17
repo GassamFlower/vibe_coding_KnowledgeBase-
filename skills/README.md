@@ -1,6 +1,6 @@
 # Skills 技能说明书
 
-> 11 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
+> 12 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
 
 ---
 
@@ -50,6 +50,10 @@
 - **何时使用**：AI 准备说"已完成""做好了""可以了"；用户问"做完了吗""能用了吗"；任何一个阶段、功能、修复准备收尾
 - **作用**：防止 AI 写完代码就直接宣布完成。让"完成"必须有可检查的证据，而不是结论
 
+### 12. frontend-security-review（前端安全审查）
+- **何时使用**：纯前端 / 小程序项目走到业务门的安全审查阶段；前后端分离项目的前端部分安全收尾；用户说"检查一下前端安全""有没有 XSS"
+- **作用**：安全审查不能只查后端。前端有自己的攻击面（XSS / CSRF / 敏感信息 / 依赖 / 构建），纯前端项目没有后端可查时，这几条就是全部安全边界
+
 ---
 
 ## 技能使用顺序（按 4 道门禁归位）
@@ -59,7 +63,7 @@
      ↓
 【架构门】database-design → backend-architecture-acceptance
      ↓
-【业务门】browser-verification → backend-security-review → requesting-code-review
+【业务门】browser-verification → backend-security-review → frontend-security-review → requesting-code-review
      ↓
 【上线门】testing-strategy → verification-before-completion
 
@@ -72,7 +76,7 @@
 |---|---|
 | 立项门 | brainstorming、project-breakdown、writing-plans |
 | 架构门 | database-design、backend-architecture-acceptance、browser-verification |
-| 业务门 | backend-security-review、requesting-code-review、testing-strategy |
+| 业务门 | backend-security-review、frontend-security-review、requesting-code-review、testing-strategy |
 | 上线门 | testing-strategy、verification-before-completion |
 | 全程 | systematic-debugging（调试）、verification-before-completion（每次宣布"完成"前） |
 
@@ -98,4 +102,4 @@ Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destin
 
 ---
 
-_最后更新：2026-08-07（补 project-breakdown，10 → 11 个技能）_
+_最后更新：2026-08-17（补 frontend-security-review，11 → 12 个技能）_
