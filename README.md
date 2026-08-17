@@ -22,7 +22,7 @@ Vibe_Coding/
 ├── docs/              ← 知识库（查证用）
 ├── workflows/         ← 流程速查（查证用）
 ├── skills/            ← 方法论库（导入到项目用）
-├── templates/         ← 工作台模板（复制到项目用）
+├── templates/         ← 工作台模板（PROJECT_STATUS 复制、门禁卡查看不复制）
 ├── sources/           ← 原始笔记 + 归档（溯源用）
 ├── companion/         ← 工作台生成器（一键生成 AGENTS.md / PROJECT_STATUS.md）
 └── agent/             ← 工程化智能体（可自动跑流程与门禁）
@@ -32,7 +32,7 @@ Vibe_Coding/
 
 | 目录 | 内容 | 什么时候用 | 怎么用 |
 |---|---|---|---|
-| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 复制到新项目根目录 |
+| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 只复制 PROJECT_STATUS.md；门禁卡留在知识库查看，不复制 |
 | `skills/` | 12 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
 | `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
