@@ -2,7 +2,7 @@
 
 本目录不复制方法论内容，而是引用知识库的 `../../skills/` 目录。
 
-## 引用的 9 个方法论
+## 引用的 12 个方法论
 
 | Skill 文件 | 何时调用 |
 |---|---|
@@ -12,10 +12,12 @@
 | `../../skills/database-design.md` | 数据库阶段 |
 | `../../skills/backend-architecture-acceptance.md` | 后端骨架验收 |
 | `../../skills/backend-security-review.md` | 安全审查 |
+| `../../skills/frontend-security-review.md` | 前端安全审查（纯前端 / 小程序 / 前后端分离的前端） |
 | `../../skills/requesting-code-review.md` | 代码审查 |
 | `../../skills/systematic-debugging.md` | 调试 Bug |
 | `../../skills/browser-verification.md` | 前端浏览器验证 |
-| `../../skills/verification-before-completion.md` | 任何"完成"声明前 |
+| `../../skills/testing-strategy.md` | 业务模块完成后、宣布完成前——先测试再验收 |
+| `../../skills/verification-before-completion.md` | 任何"完成"声明前（在 testing-strategy 之后） |
 
 ## 为什么用引用而不是复制
 
@@ -26,5 +28,5 @@
 ## 移植时的处理
 
 如果把 agent/ 移植到其他环境（如 WorkBuddy skills 目录或 DC Ops 平台）：
-1. 把 `../../skills/` 的 9 个文件复制到本目录
+1. 把 `../../skills/` 的 12 个文件复制到本目录
 2. 把 SKILL.md 中的引用路径从 `../../skills/` 改为 `./`
