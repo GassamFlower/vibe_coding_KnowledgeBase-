@@ -37,14 +37,14 @@
 
 | 概念 | 唯一真源 | 派生 / 消费方 |
 |---|---|---|
-| **项目状态判断**（状态 0-4 决策树） | `docs/项目可视化流程手册.md` 第 1 章 | README「项目状态速查」、教程第 4 章（均注明速查） |
+| **项目状态判断**（状态 0-4 决策树） | `docs/项目可视化流程手册.md` 第 1 章 | README「项目状态速查」；教程 4.2 引用可视化手册决策树（2026-09-17 收敛），其余状态流程为展示段落 |
 | **阶段模型（阶段 1-14 + 4 门禁归属）** | `docs/AI协作全流程操作手册.md` 第 1-14 章 | `workflows/全流程速查.md`、教程「全景脑图」 |
 | **4 道门禁的过门标准 / 验收清单** | `templates/门禁卡-*.md` | `agent/gate-checks/`、`companion/modules/gate-*.md`、README 门禁表（⚠️ 均为副本，见待收敛 #1） |
 | **Skill 方法论**（12 个，AI 规则） | `skills/*.md`（每技能一份） | `skills/README.md`（索引）、手册中的讲解段落（面向人，允许） |
-| **Prompt 模板** | `docs/全流程AI对话Prompt模板库.md` | 各门禁卡「常用 Prompt」（精选引用） |
+| **Prompt 模板** | `docs/全流程AI对话Prompt模板库.md` | 各门禁卡「常用 Prompt」（精选引用）；教程 2.4/2.7/3.3 已改为引用模板库对应节（2026-09-17 收敛） |
 | **工作台三件套定义**（PROJECT_STATUS / 宪法 / 真源文档） | `docs/AI协作全流程操作手册.md` 第 0.3-0.8 节 | `templates/PROJECT_STATUS.md`、教程第 5.3 节 |
 | **模板文件本身** | `templates/` | 使用者复制到项目 |
-| **5 条心法** | README「核心心法」 | 教程 1.2 / 7.3（⚠️ 重复 2 遍，见待收敛 #2） |
+| **5 条心法** | README「核心心法」 | 教程 7.3 墙贴版（仅做速记展示，引用不外扩） |
 
 ---
 
@@ -56,21 +56,16 @@
 |---|---|---|
 | 阶段总数 | **14 阶段**（立项门 1-4 / 架构门 5-10 / 业务门 11-12 / 上线门 13-14） | README「stage 1-5 立项门…」与 `companion/` 的 15 阶段 frontmatter 采用偏移编号（见待收敛 #1） |
 | Skill 数量 | **12 个**（含 frontend-security-review） | 教程「全景脑图」写"十一技能"且清单缺该技能 |
-| 立项门硬指标 | `templates/门禁卡-立项门.md` 的 7 项 | `companion/modules/gate-立项门.md` 的 7 项内容不同（见待收敛 #1） |
+| 立项门硬指标 | `templates/门禁卡-立项门.md` 的 7 项 | `agent/gate-checks/立项门.md`、`companion/modules/gate-立项门.md` 已与真源对齐（2026-09-17） |
 
 ---
 
 ## 四、待收敛清单（Phase 2+ 再处理，先登记不解决）
 
-1. **门禁/阶段副本漂移**：`agent/gate-checks/` 与 `companion/modules/gate-*.md` 是手写副本，
-   已与 `templates/门禁卡-*.md` 不一致（立项门存在两套 7 项硬指标）。目标：门禁卡为真源，
-   agent/companion 由生成器产出。
-2. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段偏移编号
-   （见 `companion/generator/main.py` 顶部注释）。目标：以 14 阶段为准重排。
-3. **心法重复**：5 条心法在 README、教程 1.2、教程 7.3 出现三遍。目标：README 为真源，
-   教程留 7.3 墙贴版即可。
-4. **目录归属待定**：`copilot/`、`TaskNotes/`、`.obsidian/` 等本地工具产物是否入库；
-   `sources/_archive/` 是否并入 `_archive/`。
+1. **门禁副本维护方式**：`agent/gate-checks/` 与 `companion/modules/gate-*.md` 是与 `templates/门禁卡-*.md` 同真源的不同消费形态（agent 为机器执行版，companion 为生成器注入版），立项门 7 项已对齐（2026-09-17）。仍待：架构 / 业务 / 上线门复核一次，确保与对应门禁卡一致。
+2. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段偏移编号（已确认是有意设计，配套合规），archive 侧 state-machine 为 14 阶段。仍待：README「待收敛速查」里对两种编号的说明保持同步，明确归档不再引入第三者编号。
+3. ~~**心法重复**~~（已收敛 2026-09-17）：README 为真源，教程 1.2 已改引用，教程 7.3 墙贴版保留速记展示。
+4. ~~**目录归属待定**~~（已清理 2026-09-17）：`.opencode/`、`.agents/`、`copilot/` 技能贴片与 `.workbuddy/skills/personal-site-builder/` 已删（本地产物不入库）；`TaskNotes/`、`.obsidian/` 为工具配置，保留不入库（`TaskNotes/Start Here.md` 引导页已删）；仍待：`sources/_archive/` 是否并入 `_archive/`。
 
 ---
 
