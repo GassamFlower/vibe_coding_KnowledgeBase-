@@ -97,7 +97,6 @@
 | 给 AI 查某环节方法论 | `skills/` | 12 个 skill 对应文件 |
 | 让智能体自动走流程 / 自动验收 | `agent/` | SKILL.md（入口）+ gate-checks/ + workflows/ |
 | 生成工作台三件套（AGENTS.md / PROJECT_STATUS） | `companion/` | generator/main.py + modules/ |
-| 追溯某条规则的来源 | `sources/`（本地，不入库） | 原始笔记与 `_archive/` |
 
 **判断顺序**：先看「我要做的事」能对上哪一行 → 翻该层 → 层内按 `INDEX.md` 真源注册表找唯一真源。日常开发只碰 `templates/PROJECT_STATUS.md`；需要详细操作才翻 `docs/`；要自动化过门禁才用 `agent/`；要为新项目生成状态卡才跑 `companion/`。
 

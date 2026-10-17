@@ -24,7 +24,6 @@ Vibe_Coding/
 ├── workflows/         ← 流程速查（查证用）
 ├── skills/            ← 方法论库（导入到项目用）
 ├── templates/         ← 工作台模板（PROJECT_STATUS 复制、门禁卡查看不复制）
-├── sources/           ← 原始笔记 + 归档（本地目录，不入库）
 ├── companion/         ← 工作台生成器（一键生成 AGENTS.md / PROJECT_STATUS.md）
 └── agent/             ← 工程化智能体（可自动跑流程与门禁）
 ```
@@ -37,11 +36,10 @@ Vibe_Coding/
 | `skills/` | 12 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
 | `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
-| `sources/`（本地） | 2 篇理论来源 + `_archive/` 19 篇原始笔记 | **需要溯源时** | 留在本地翻，不入库 |
 | `companion/` | 工作台生成器（modules/ + 模板 + 生成器） | **建项目 / 换阶段时** | 跑 `main.py` 生成 AGENTS.md |
 | `agent/` | 工程化智能体（可执行层，可选） | **想自动化流程时** | 复制到 skills 目录或项目根目录 |
 
-**核心原则**：日常只碰 `templates/` 和 `skills/`；`companion/` 在切换阶段时跑一次即可；`agent/`、`docs/`、`workflows/` 偶尔翻；`sources/` 是本地原始笔记，只在你需要溯源时在本地翻。
+**核心原则**：日常只碰 `templates/` 和 `skills/`；`companion/` 在切换阶段时跑一次即可；`agent/`、`docs/`、`workflows/` 偶尔翻。
 
 ---
 
@@ -523,7 +521,6 @@ python companion/generator/main.py --project <你的项目目录> --stage 1
 | 找可直接复制的 prompt | [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) |
 | 查某个阶段的快速步骤 | [全流程速查](workflows/全流程速查.md) |
 | 看某个 Skill 的方法论 | [skills/ 目录](skills/) |
-| 溯源某条规则的来源 | 本地 `sources/_archive/` 目录（不入库） |
 | 项目复盘反哺 | [项目复盘模板](templates/项目复盘模板.md) |
 | 接手项目或状态不清 | [接手项目第一天操作清单](templates/接手项目第一天操作清单.md) |
 
