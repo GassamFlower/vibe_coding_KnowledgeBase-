@@ -54,16 +54,16 @@
 
 | 维度 | 权威口径 | 目前不一致处 |
 |---|---|---|
-| 阶段总数 | **14 阶段**（立项门 1-4 / 架构门 5-10 / 业务门 11-12 / 上线门 13-14） | README「stage 1-5 立项门…」与 `companion/` 的 15 阶段 frontmatter 采用偏移编号（见待收敛 #1） |
-| Skill 数量 | **12 个**（含 frontend-security-review） | 教程「全景脑图」写"十一技能"且清单缺该技能 |
+| 阶段总数 | **14 阶段**（立项门 1-4 / 架构门 5-10 / 业务门 11-12 / 上线门 13-14） | README「场景 5」与 `companion/` 使用生成器编号（stage 1-15，偏移 +1），两套编号的对照规则真源在 `docs/AI协作全流程操作手册.md` 0.8 |
+| Skill 数量 | **12 个**（含 frontend-security-review） | 无（README、教程「全景脑图」与记忆口诀、agent/references 均写 12 个） |
 | 立项门硬指标 | `templates/门禁卡-立项门.md` 的 7 项 | `agent/gate-checks/立项门.md`、`companion/modules/gate-立项门.md` 已与真源对齐（2026-09-17） |
 
 ---
 
 ## 四、待收敛清单（Phase 2+ 再处理，先登记不解决）
 
-1. **门禁副本维护方式**：`agent/gate-checks/` 与 `companion/modules/gate-*.md` 是与 `templates/门禁卡-*.md` 同真源的不同消费形态（agent 为机器执行版，companion 为生成器注入版），立项门 7 项已对齐（2026-09-17）。仍待：架构 / 业务 / 上线门复核一次，确保与对应门禁卡一致。
-2. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段偏移编号（已确认是有意设计，配套合规），archive 侧 state-machine 为 14 阶段。仍待：README「待收敛速查」里对两种编号的说明保持同步，明确归档不再引入第三者编号。
+1. **门禁副本维护方式**：`agent/gate-checks/` 与 `companion/modules/gate-*.md` 是与 `templates/门禁卡-*.md` 同真源的不同消费形态（agent 为机器执行版，companion 为生成器注入版）。2026-10-17 逐项复核结果：立项门 7 项、架构门 7 项三处一致；业务门真源 8 项，companion 侧只有 4 项（每轮验收证据、水平越权测试、禁止拼接用户输入、安全审查报告已写入文件这 4 项被合并进相邻指标）；上线门三处各不相同（真源 7 项，agent 侧多出「墓碑代码已清理」，companion 侧 6 项且把「风险项已登记后期清单」并入指标 1，Git 项额外要求 push 到知识库仓库）。仍待：按真源逐项补齐业务门与上线门的两个副本。
+2. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段偏移编号（已确认是有意设计，配套合规），archive 侧 state-machine 为 14 阶段。README「场景 5」与「项目状态速查」已标明那里使用生成器编号，并指向手册 0.8 的对照规则。仍待：明确归档不再引入第三者编号。
 3. ~~**心法重复**~~（已收敛 2026-09-17）：README 为真源，教程 1.2 已改引用，教程 7.3 墙贴版保留速记展示。
 4. ~~**目录归属待定**~~（已清理 2026-09-17）：`.opencode/`、`.agents/`、`copilot/` 技能贴片与 `.workbuddy/skills/personal-site-builder/` 已删（本地产物不入库）；`TaskNotes/`、`.obsidian/` 为工具配置，保留不入库（`TaskNotes/Start Here.md` 引导页已删）。
 
