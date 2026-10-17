@@ -25,7 +25,7 @@
 | `templates/` | 4 张门禁卡 + PROJECT_STATUS + 各模板 | 建工作台 / 过门禁 |
 | `companion/` | 工作台生成器（AGENTS.md 等） | 自动化生成工作台 |
 | `agent/` | 工程化智能体（自动跑流程与门禁） | 想自动化时 |
-| `sources/` | 原始笔记与理论来源 | 溯源 / 考古 |
+| `sources/` | 原始笔记与理论来源（本地，不入库） | 溯源 / 考古 |
 | `_archive/`（规划） | 不再活跃的历史内容 | 只在考古时翻 |
 
 ---
@@ -65,7 +65,7 @@
 1. **门禁副本维护方式**：`agent/gate-checks/` 与 `companion/modules/gate-*.md` 是与 `templates/门禁卡-*.md` 同真源的不同消费形态（agent 为机器执行版，companion 为生成器注入版），立项门 7 项已对齐（2026-09-17）。仍待：架构 / 业务 / 上线门复核一次，确保与对应门禁卡一致。
 2. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段偏移编号（已确认是有意设计，配套合规），archive 侧 state-machine 为 14 阶段。仍待：README「待收敛速查」里对两种编号的说明保持同步，明确归档不再引入第三者编号。
 3. ~~**心法重复**~~（已收敛 2026-09-17）：README 为真源，教程 1.2 已改引用，教程 7.3 墙贴版保留速记展示。
-4. ~~**目录归属待定**~~（已清理 2026-09-17）：`.opencode/`、`.agents/`、`copilot/` 技能贴片与 `.workbuddy/skills/personal-site-builder/` 已删（本地产物不入库）；`TaskNotes/`、`.obsidian/` 为工具配置，保留不入库（`TaskNotes/Start Here.md` 引导页已删）；仍待：`sources/_archive/` 是否并入 `_archive/`。
+4. ~~**目录归属待定**~~（已清理 2026-09-17）：`.opencode/`、`.agents/`、`copilot/` 技能贴片与 `.workbuddy/skills/personal-site-builder/` 已删（本地产物不入库）；`TaskNotes/`、`.obsidian/` 为工具配置，保留不入库（`TaskNotes/Start Here.md` 引导页已删）。
 
 ---
 

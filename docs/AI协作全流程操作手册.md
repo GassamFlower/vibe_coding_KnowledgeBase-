@@ -292,7 +292,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\agent\templates\PROJECT
 | `docs/` 4 篇手册 | 遇到盲区时翻 | 查证资料，不需要进项目 |
 | `workflows/全流程速查.md` | 快速回顾阶段时翻 | 同上 |
 | `agent/`（可选） | 想要智能体自动跑流程时 | 按需复制，不是默认工作台 |
-| `sources/`、`companion/` | 溯源 / 重新生成时用 | 知识库工具，不进项目 |
+| `sources/`（本地，不入库）、`companion/` | 溯源 / 重新生成时用 | 知识库工具，不进项目 |
 
 #### 🔄 复制模板但改名放 docs/（2 样，到阶段才做）
 
