@@ -83,7 +83,7 @@
 
 ## 八、知识库用法机制卡（当前该用哪一份）
 
-本知识库分 6 层。任何时刻先按「我要做的事」定位层，再翻对应层文件，各层职责互不重叠，避免挑错。
+本知识库分 7 层。任何时刻先按「我要做的事」定位层，再翻对应层文件，各层职责互不重叠，避免挑错。
 
 | 我现在要… | 翻哪一层 | 具体文件 |
 |---|---|---|
@@ -94,7 +94,8 @@
 | 过某道门禁 / 验收清单核对 | `templates/` | 门禁卡-立项门 / 架构门 / 业务门 / 上线门 |
 | 维护项目进度与下一步 | `templates/` | PROJECT_STATUS.md（复制到业务项目根目录） |
 | 接手陌生项目 | `templates/` | 接手项目第一天操作清单.md |
-| 给 AI 查某环节方法论 | `skills/` | 12 个 skill 对应文件 |
+| 给 AI 查某环节方法论 | `skills/` | 18 个 skill 对应文件 |
+| 做界面设计 / 定 UI 规范 | `references/` | UIUX参考库索引.md（先读参考库 `AI-CONTEXT.md`） |
 | 让智能体自动走流程 / 自动验收 | `agent/` | SKILL.md（入口）+ gate-checks/ + workflows/ |
 | 生成工作台三件套（AGENTS.md / PROJECT_STATUS） | `companion/` | generator/main.py + modules/ |
 

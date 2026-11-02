@@ -21,11 +21,14 @@
 | `docs/全流程AI对话Prompt模板库.md` | 可直接复制的 prompt | 需要和 AI 对话时 |
 | `docs/使用教程与导航手册.md` | 新手 walkthrough（上篇）+ 速查（下篇） | 第一次学这套方法 |
 | `workflows/全流程速查.md` | 每个阶段的"核心步骤→完成判定→反模式" | 快速回顾某阶段 |
-| `skills/` | 12 个 Skill 方法论（给 AI 的规则） | 项目启动时复制进项目 |
-| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 各模板 | 建工作台 / 过门禁 |
+| `skills/` | 18 个 Skill 方法论（给 AI 的规则） | 项目启动时复制进项目 |
+| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 7 份项目文档模板 | 建工作台 / 过门禁 |
+| `references/` | 外部资料与 UIUX 参考库索引（页面 / 章节 → 阶段与门禁，只写摘要与链接） | 想深入某个主题、做界面设计时 |
 | `companion/` | 工作台生成器（AGENTS.md 等） | 自动化生成工作台 |
 | `agent/` | 工程化智能体（自动跑流程与门禁） | 想自动化时 |
-| `_archive/`（规划） | 不再活跃的历史内容 | 只在考古时翻 |
+
+> 外部资料（如 VibeVibe 工程手册）原文采用 CC BY-NC-SA 4.0，本库只写自己的摘要、检查项和原文链接，不复制原文。
+> UIUX 参考库位于本机 `E:\FiveTierProjectSystem\03-Active\UIUX-Reference`，只取设计语言、结构与参数；来源与许可见该库的 `SOURCES.md`，阶段对照见 `references/UIUX参考库索引.md`。
 
 ---
 
@@ -38,8 +41,18 @@
 |---|---|---|
 | **项目状态判断**（状态 0-4 决策树） | `docs/项目可视化流程手册.md` 第 1 章 | README「项目状态速查」；教程 4.2 引用可视化手册决策树（2026-09-17 收敛），其余状态流程为展示段落 |
 | **阶段模型（阶段 1-14 + 4 门禁归属）** | `docs/AI协作全流程操作手册.md` 第 1-14 章 | `workflows/全流程速查.md`、教程「全景脑图」 |
-| **4 道门禁的过门标准 / 验收清单** | `templates/门禁卡-*.md` | `agent/gate-checks/`、`companion/modules/gate-*.md`、README 门禁表（⚠️ 均为副本，见待收敛 #1） |
-| **Skill 方法论**（12 个，AI 规则） | `skills/*.md`（每技能一份） | `skills/README.md`（索引）、手册中的讲解段落（面向人，允许） |
+| **4 道门禁的过门标准 / 验收清单** | `templates/门禁卡-*.md` | `agent/gate-checks/`（机器执行版）、`companion/modules/gate-*.md`（生成器注入版）、README 门禁表 |
+| **需求验证与 PRD** | `skills/product-validation.md` | `templates/立项文档PRD模板.md`、`templates/门禁卡-立项门.md`「需求验证与 PRD」 |
+| **界面设计规范** | `skills/ui-design-system.md` | `templates/门禁卡-架构门.md`「前端骨架」；`references/UIUX参考库索引.md`（阶段对照与取用入口） |
+| **接口设计** | `skills/api-design.md` | `templates/API接口清单模板.md`、`templates/门禁卡-架构门.md`「后端骨架」 |
+| **数据库运行期规则**（索引 / 事务 / 迁移 / 备份） | `skills/database-design.md`「运行期设计补充」 | `templates/门禁卡-架构门.md`「数据库设计」 |
+| **认证、密钥、跨域、限流** | `skills/backend-security-review.md` 第七至九节 | `templates/门禁卡-业务门.md`「安全审查」 |
+| **测试自动分层** | `skills/testing-strategy.md`「自动分层补充」 | `templates/门禁卡-业务门.md`「业务模块开发」 |
+| **部署与运维** | `skills/deployment-and-ops.md` | `templates/上线检查清单.md`、`templates/门禁卡-上线门.md`「上线准备 / 上线执行」 |
+| **SEO、统计与合规** | `skills/seo-analytics-compliance.md` | `templates/门禁卡-上线门.md`「SEO 与运营」 |
+| **上线后反馈与迭代** | `skills/user-feedback-iteration.md` | `templates/上线后30天迭代计划.md`、`templates/PROJECT_STATUS.md`「上线后指标」 |
+| **外部资料对应关系** | `references/VibeVibe工程手册索引.md` | README「配套文档导航」 |
+| **Skill 方法论**（18 个，AI 规则） | `skills/*.md`（每技能一份） | `skills/README.md`（索引）、手册中的讲解段落（面向人，允许） |
 | **Prompt 模板** | `docs/全流程AI对话Prompt模板库.md` | 各门禁卡「常用 Prompt」（精选引用）；教程 2.4/2.7/3.3 已改为引用模板库对应节（2026-09-17 收敛） |
 | **工作台三件套定义**（PROJECT_STATUS / 宪法 / 真源文档） | `docs/AI协作全流程操作手册.md` 第 0.3-0.8 节 | `templates/PROJECT_STATUS.md`、教程第 5.3 节 |
 | **模板文件本身** | `templates/` | 使用者复制到项目 |
@@ -47,24 +60,21 @@
 
 ---
 
-## 三、现状矛盾速查（改文档前先对表）
+## 三、口径速查（改文档前先对表）
 
 以下数字/描述如果在新提交里继续被引用，**以注册表为准**：
 
-| 维度 | 权威口径 | 目前不一致处 |
+| 维度 | 权威口径 | 当前状态 |
 |---|---|---|
-| 阶段总数 | **14 阶段**（立项门 1-4 / 架构门 5-10 / 业务门 11-12 / 上线门 13-14） | README「场景 5」与 `companion/` 使用生成器编号（stage 1-15，偏移 +1），两套编号的对照规则真源在 `docs/AI协作全流程操作手册.md` 0.8 |
-| Skill 数量 | **12 个**（含 frontend-security-review） | 无（README、教程「全景脑图」与记忆口诀、agent/references 均写 12 个） |
-| 立项门硬指标 | `templates/门禁卡-立项门.md` 的 7 项 | `agent/gate-checks/立项门.md`、`companion/modules/gate-立项门.md` 已与真源对齐（2026-09-17） |
+| 阶段总数 | **14 阶段**（立项门 1-4 / 架构门 5-10 / 业务门 11-12 / 上线门 13-14） | README「场景 5」与 `companion/` 使用生成器编号（stage 1-15，相差 +1），已在对应位置标明编号来源，对照规则见 `docs/AI协作全流程操作手册.md` 0.8 |
+| Skill 数量 | **18 个**（含前端安全、需求验证、界面设计、接口设计、部署运维、SEO 与运营、上线后迭代） | 无（2026-11-02 已同步 `skills/README.md`、教程、`agent/SKILL.md`） |
+| 门禁指标数量 | 立项门 **10 项**；架构门 **11 项**；业务门 **12 项**；上线门 **14 项**（均以 `templates/门禁卡-*.md` 为准） | 无（2026-11-02 已同步 `agent/gate-checks/`、`companion/modules/gate-*.md`） |
 
 ---
 
 ## 四、待收敛清单（Phase 2+ 再处理，先登记不解决）
 
-1. **门禁副本维护方式**：`agent/gate-checks/` 与 `companion/modules/gate-*.md` 是与 `templates/门禁卡-*.md` 同真源的不同消费形态（agent 为机器执行版，companion 为生成器注入版）。2026-10-17 逐项复核结果：立项门 7 项、架构门 7 项三处一致；业务门真源 8 项，companion 侧只有 4 项（每轮验收证据、水平越权测试、禁止拼接用户输入、安全审查报告已写入文件这 4 项被合并进相邻指标）；上线门三处各不相同（真源 7 项，agent 侧多出「墓碑代码已清理」，companion 侧 6 项且把「风险项已登记后期清单」并入指标 1，Git 项额外要求 push 到知识库仓库）。仍待：按真源逐项补齐业务门与上线门的两个副本。
-2. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段偏移编号（已确认是有意设计，配套合规），archive 侧 state-machine 为 14 阶段。README「场景 5」与「项目状态速查」已标明那里使用生成器编号，并指向手册 0.8 的对照规则。仍待：明确归档不再引入第三者编号。
-3. ~~**心法重复**~~（已收敛 2026-09-17）：README 为真源，教程 1.2 已改引用，教程 7.3 墙贴版保留速记展示。
-4. ~~**目录归属待定**~~（已清理 2026-09-17）：`.opencode/`、`.agents/`、`copilot/` 技能贴片与 `.workbuddy/skills/personal-site-builder/` 已删（本地产物不入库）；`TaskNotes/`、`.obsidian/` 为工具配置，保留不入库（`TaskNotes/Start Here.md` 引导页已删）。
+1. **阶段编号模型未统一**：文档侧为 14 阶段；companion/README 为 15 阶段错位编号（已确认是有意设计，配套合规），archive 侧 state-machine 为 14 阶段。README「场景 5」与「项目状态速查」已标明那里使用生成器编号，并指向手册 0.8 的对照规则。仍待：明确归档不再引入第三者编号。
 
 ---
 

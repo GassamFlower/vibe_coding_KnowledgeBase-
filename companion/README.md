@@ -28,7 +28,7 @@ companion/
 │   ├── 00-state-judgment.md   cross：5 种项目状态判断
 │   ├── 00-cost-context.md     cross：成本与心力管理（每次会话注入）
 │   ├── 01-idea.md … 15-release.md   phase：14 阶段（stage 1-15）
-│   └── gate-立项门.md … gate-上线门.md   gate：4 道门禁硬指标
+│   └── gate-立项门.md … gate-上线门.md   gate：4 道门禁验收指标
 ├── templates/          渲染模板
 │   ├── AGENTS.md.tmpl
 │   └── PROJECT_STATUS.md.tmpl
@@ -79,7 +79,7 @@ next: 下一个阶段
 | 3 | 选型 | phase | — |
 | 4 | 架构设计 | phase | — |
 | 5 | 宪法 | phase | 立项门 |
-| 6 | 实施真源文档拆解 | phase | — |
+| 6 | 实施真源文档分解 | phase | — |
 | 7 | 前端骨架 | phase | — |
 | 8 | 数据库设计 | phase | — |
 | 9 | 后端骨架 | phase | — |
@@ -90,4 +90,4 @@ next: 下一个阶段
 | 14 | 上线前总验收 | phase | — |
 | 15 | 上线 + Skill 反哺 | phase | 上线门 |
 
-> 阶段编号说明：生成器用自身编号（stage 1-15），与知识库 14 阶段模型偏移 +1（gen N = 14模型 N-1，N≥6），为兼容既有 01-05 模块沿用。cross 模块每个 stage 都注入；gate 模块在抵达对应 stage（5/11/13/15）时注入硬指标正文。
+> 阶段编号说明：生成器用自身编号（stage 1-15），与知识库 14 阶段模型相差 +1（gen N = 14模型 N-1，N≥6），为兼容既有 01-05 模块沿用。cross 模块每个 stage 都注入；gate 模块在抵达对应 stage（5/11/13/15）时注入验收指标正文。

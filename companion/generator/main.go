@@ -25,7 +25,7 @@ var (
 
 // STAGE_NEXT: 阶段 -> (标题, 下一步短描述)
 // 说明：stage 1-5 对应 立项门路径；6-15 续接架构门/业务门/上线门。
-// 与 workflows/全流程速查.md 的 14 阶段模型存在偏移（gen N = 14模型 N-1，N>=6），
+// 与 workflows/全流程速查.md 的 14 阶段模型存在编号差异（gen N = 14模型 N-1，N>=6），
 // 这是为兼容现有 01-05 模块而采用的生成器自身编号。逻辑与 main.py 保持一致。
 var stageNext = map[int][2]string{
 	1:  {"阶段1 纯想法 → 立项", "完成立项说明，进入阶段2 立项"},
@@ -33,7 +33,7 @@ var stageNext = map[int][2]string{
 	3:  {"阶段3 选型", "产出 docs/d-选型.md（含否决理由），进入阶段4 架构设计"},
 	4:  {"阶段4 架构设计", "产出 docs/e-架构设计文档.md，进入阶段5 宪法"},
 	5:  {"阶段5 宪法", "产出 AGENT_CONSTITUTION.md，通过立项门校验"},
-	6:  {"阶段6 实施真源文档拆解", "产出 docs/f-实施真源文档-第N阶段.md，进入阶段7 前端骨架"},
+	6:  {"阶段6 实施真源文档分解", "产出 docs/f-实施真源文档-第N阶段.md，进入阶段7 前端骨架"},
 	7:  {"阶段7 前端骨架搭建", "前端能启动、首页能打开，进入阶段8 数据库设计"},
 	8:  {"阶段8 数据库设计", "产出 docs/h-数据库设计文档.md + db/schema.sql 且能建表查询，进入阶段9 后端骨架"},
 	9:  {"阶段9 后端骨架搭建", "后端四条线跑通，进入阶段10 后端联调"},
@@ -156,7 +156,7 @@ func renderAgents(stage int, mods map[string]*module) string {
 	} else {
 		ng := nextGate(stage)
 		if ng != "" {
-			gateStatus = fmt.Sprintf("未到门禁。下一步临近「%s」（阶段 %d）时校验对应硬指标。", gateCN(ng), gateStageOf(ng))
+			gateStatus = fmt.Sprintf("未到门禁。下一步临近「%s」（阶段 %d）时校验对应验收指标。", gateCN(ng), gateStageOf(ng))
 		} else {
 			gateStatus = "已是最后阶段（上线门）。项目收尾 / 健康迭代中。"
 		}

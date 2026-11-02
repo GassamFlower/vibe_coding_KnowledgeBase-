@@ -1,6 +1,6 @@
 # Skills 技能说明书
 
-> 12 个核心技能，覆盖从立项到上线的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
+> 18 个核心技能，覆盖从立项到上线后运营的全流程。每个技能解决一个具体问题，防止 AI 在特定环节偷懒或犯错。
 
 ---
 
@@ -8,64 +8,91 @@
 
 ### 1. brainstorming（头脑风暴）
 - **何时使用**：用户说"我想做一个 XX""帮我做个项目""我有个想法"；产品方向还比较模糊；准备开始新项目或新模块
-- **作用**：防止 AI 一上来就创建文件、安装依赖、写代码。让 AI 先进入"产品合伙人/架构顾问"角色，把模糊想法变成可讨论、可拆分、可验收的产品起点
+- **作用**：防止 AI 一上来就创建文件、安装依赖、写代码。让 AI 先进入"产品合伙人/架构顾问"角色，把模糊想法变成可讨论、可分解、可验收的产品起点
 
-### 2. writing-plans（编写开发计划）
-- **何时使用**：立项文档已生成，准备进入开发；用户说"帮我写开发计划""接下来怎么做""拆一下任务"；一个新模块准备开始前
-- **作用**：把需求拆成可执行、可验收的任务，避免 AI 一口气写一堆功能导致项目漂移
+### 2. product-validation（需求验证与 PRD）
+- **何时使用**：想法已经聊过一轮，准备判断"值不值得做"；需要写立项文档或 PRD；用户说"这个需求靠谱吗""帮我看看有没有人真的需要"
+- **作用**：用真实用户证据代替猜测。区分真实行为和客套话，写清第一版做什么、不做什么，把立项文档整理成可执行的 PRD 五段结构
 
-### 3. project-breakdown（功能清单拆解与阶段计划）
-- **何时使用**：立项文档生成后、进入开发前；用户说"帮我拆一下功能""先做哪些功能""范围太大不知道从哪下手"；项目范围需要从"大概做什么"细化为"具体做什么"
-- **作用**：把立项文档拆成技术可执行的功能项。按**角色 / 业务流程 / 模块**三维度拆解，复杂功能（订单流转、支付退款、权限系统）单独拆专门文档并在清单里留索引，再按优先级排成有序开发阶段
+### 3. project-breakdown（功能清单分解与阶段计划）
+- **何时使用**：立项文档生成后、进入开发前；用户说"帮我分解一下功能""先做哪些功能""范围太大不知道从哪下手"；项目范围需要从"大概做什么"细化为"具体做什么"
+- **作用**：把立项文档分解成技术可执行的功能项。按**角色 / 业务流程 / 模块**三维度分解，复杂功能（订单流转、支付退款、权限系统）单独建立专门文档并在清单里留索引，再按优先级排成有序开发阶段
 
-### 4. database-design（数据库设计）
+### 4. writing-plans（编写开发计划）
+- **何时使用**：立项文档已生成，准备进入开发；用户说"帮我写开发计划""接下来怎么做""分解一下任务"；一个新模块准备开始前
+- **作用**：把需求分解成可执行、可验收的任务，避免 AI 一口气写一堆功能导致项目漂移
+
+### 5. ui-design-system（界面设计规范）
+- **何时使用**：前端骨架开始前；用户说"页面不好看""帮我定个风格""统一一下颜色和间距"；多个页面风格不一致
+- **作用**：先定风格方向、设计 token、组件库和响应式断点，页面只使用 token。避免每个页面各写一套颜色和字号，后期无法统一修改
+- **参考库**：本机 UIUX 参考库的阶段对照见 `references/UIUX参考库索引.md`，token / 组件 / 页面状态按 Skill 内「参考库（按需加载）」取用
+
+### 6. database-design（数据库设计）
 - **何时使用**：用户说"帮我设计数据库""建几张表""这个功能需要什么表"；前端骨架跑通，准备进入数据库阶段；已有数据库结构混乱，需要重新梳理
-- **作用**：防止 AI 上来就建表。先把业务对象、关系、范式、字段规范定清楚，再生成设计文件，最后才建表
+- **作用**：防止 AI 上来就建表。先把业务对象、关系、范式、字段规范定清楚，再生成设计文件，最后才建表。同时覆盖索引、事务、迁移、连接池、数据隔离和备份
 
-### 5. backend-architecture-acceptance（后端架构验收）
+### 7. api-design（接口设计）
+- **何时使用**：数据库设计完成后、后端骨架开始前；前后端需要约定接口；用户说"接口怎么设计""返回格式统一一下"
+- **作用**：先出接口清单，前后端共用一份。明确路径、方法、权限、入参、出参、错误码、分页上限和幂等规则，避免联调时字段对不上
+
+### 8. backend-architecture-acceptance（后端架构验收）
 - **何时使用**：AI 报告"后端骨架已搭好，可以开始写业务代码"；用户问"这套架构能用吗""稳不稳""可以开始写业务了吗"；后端骨架阶段收尾
-- **作用**：避免 AI 用"已经完成"糊弄过去。让验收落到证据上：规则来源、对应文件、验证方式、实际结果、是否通过。没有证据就是未验收
+- **作用**：避免 AI 用"已经完成"糊弄过去。让验收体现为证据：规则来源、对应文件、验证方式、实际结果、是否通过。没有证据就是未验收
 
-### 6. backend-security-review（后端安全审查）
+### 9. backend-security-review（后端安全审查）
 - **何时使用**：后端骨架验收通过、开始写业务接口；涉及登录、注册、修改密码、支付、订单、删除、权限相关功能；上线前最后一次安全检查；用户说"帮我做安全审查""看看有没有漏洞""这接口安全吗"
-- **作用**：防止 AI 用"已经做了安全处理"敷衍。把风险、规则、处理位置、验证证据一项项交出来。看不懂的安全说明本身就不合格
+- **作用**：防止 AI 用"已经做了安全处理"敷衍。把风险、规则、处理位置、验证证据一项项交出来。同时覆盖认证与密钥生命周期、跨域、角色权限、限流、生产错误信息和依赖审计
 
-### 7. requesting-code-review（代码审查）
+### 10. frontend-security-review（前端安全审查）
+- **何时使用**：纯前端 / 小程序项目走到业务门的安全审查阶段；前后端分离项目的前端部分安全收尾；用户说"检查一下前端安全""有没有 XSS"
+- **作用**：安全审查不能只查后端。前端有自己的攻击面（XSS / CSRF / 敏感信息 / 依赖 / 构建），纯前端项目没有后端可查时，这几条就是全部安全边界
+
+### 11. requesting-code-review（代码审查）
 - **何时使用**：一个功能/模块/修复完成后准备合并或提交前；上线前最后一次审查；用户说"帮我审一下代码""看看有没有问题""检查一下风险"
 - **作用**：用另一个视角检查风险，避免写代码的视角盲区。让 AI 不只看"功能跑没跑通"，还看长期可维护性和潜在风险
 
-### 8. systematic-debugging（系统化调试）
-- **何时使用**：用户报告 bug、报错、行为异常；用户说"帮我修一下""这里有问题""跑不起来"；改了一个地方导致另一个地方出错
-- **作用**：防止 AI 凭直觉乱猜、打补丁、改着改着把项目改乱。核心原则：**不要猜，先找根因**
-
-### 9. browser-verification（浏览器验证）
-- **何时使用**：前端页面/交互/路由改动后；用户说"帮我看看页面""打开看看效果""验证一下前端"；涉及响应式、跨端单位（如小程序 rpx）问题时
-- **作用**：避免 AI 只看代码就说"前端做好了"。让前端验收落到看得见的实际渲染、交互、状态反馈上
-
-### 10. testing-strategy（测试六步法）
+### 12. testing-strategy（测试六步法与自动分层）
 - **何时使用**：一个业务模块/功能开发完成，准备验收前；用户说"测一下""测试这个功能""跑一遍"；过业务门前；`verification-before-completion` 之前——先测试再验收
-- **作用**：防止 AI 用"已经测过了""功能正常"糊弄。让测试落到真实有效的证据上。同时拦住两种极端：AI 写一堆假测试（代码都改错了测试还绿）和 AI 堆无用测试（关键路径没测深、次要功能测一堆）
+- **作用**：防止 AI 用"已经测过了""功能正常"糊弄。让测试体现为真实有效的证据。覆盖单元 / 接口 / E2E 分层、不稳定测试处理和 CI 自动执行
 
-### 11. verification-before-completion（完成前验证）
+### 13. browser-verification（浏览器验证）
+- **何时使用**：前端页面/交互/路由改动后；用户说"帮我看看页面""打开看看效果""验证一下前端"；涉及响应式、跨端单位（如小程序 rpx）问题时
+- **作用**：避免 AI 只看代码就说"前端做好了"。让前端验收体现在看得见的实际渲染、交互、状态反馈上
+
+### 14. verification-before-completion（完成前验证）
 - **何时使用**：AI 准备说"已完成""做好了""可以了"；用户问"做完了吗""能用了吗"；任何一个阶段、功能、修复准备收尾
 - **作用**：防止 AI 写完代码就直接宣布完成。让"完成"必须有可检查的证据，而不是结论
 
-### 12. frontend-security-review（前端安全审查）
-- **何时使用**：纯前端 / 小程序项目走到业务门的安全审查阶段；前后端分离项目的前端部分安全收尾；用户说"检查一下前端安全""有没有 XSS"
-- **作用**：安全审查不能只查后端。前端有自己的攻击面（XSS / CSRF / 敏感信息 / 依赖 / 构建），纯前端项目没有后端可查时，这几条就是全部安全边界
+### 15. deployment-and-ops（部署与运维）
+- **何时使用**：准备上线；需要选择托管平台或自有服务器；配置域名、HTTPS、日志、监控和回滚；用户说"怎么上线""部署到哪里"
+- **作用**：把上线变成可重复执行的步骤。上线前检查、生产配置、数据库迁移、冒烟测试、监控告警和回滚步骤都有明确规定，避免上线后无法定位和恢复
+
+### 16. seo-analytics-compliance（SEO、统计与合规）
+- **何时使用**：对外站点上线前；用户说"怎么让别人搜到""分享出去没有图""要不要写隐私政策"；需要接入访问统计
+- **作用**：检查页面标题和描述、分享卡片、sitemap、访问统计与关键事件，以及隐私政策、用户协议和备案。避免上线后无法被搜索、无法判断效果或存在合规缺口
+
+### 17. user-feedback-iteration（上线后反馈与迭代）
+- **何时使用**：项目上线后进入运营；用户说"接下来优化什么""用户反馈怎么处理"；需要判断下一个版本做什么
+- **作用**：把零散反馈整理成可排序的需求。用 RICE 排序，写清假设和验证方式，控制灰度发布节奏，避免凭感觉加功能
+
+### 18. systematic-debugging（系统化调试）
+- **何时使用**：用户报告 bug、报错、行为异常；用户说"帮我修一下""这里有问题""跑不起来"；改了一个地方导致另一个地方出错
+- **作用**：防止 AI 凭直觉乱猜、打补丁、改着改着把项目改乱。核心原则：**不要猜，先找根因**
 
 ---
 
 ## 技能使用顺序（按 4 道门禁归位）
 
 ```
-【立项门】brainstorming → project-breakdown → writing-plans
+【立项门】brainstorming → product-validation → project-breakdown → writing-plans
      ↓
-【架构门】database-design → backend-architecture-acceptance
+【架构门】ui-design-system → database-design → api-design → backend-architecture-acceptance
      ↓
-【业务门】browser-verification → backend-security-review → frontend-security-review → requesting-code-review
+【业务门】browser-verification → backend-security-review → frontend-security-review
+         → testing-strategy → requesting-code-review
      ↓
-【上线门】testing-strategy → verification-before-completion
+【上线门】deployment-and-ops → seo-analytics-compliance
+         → verification-before-completion → user-feedback-iteration
 
   ⚡ systematic-debugging：全程随时可用（一出 bug 就调它，不分门禁）
 ```
@@ -74,10 +101,10 @@
 
 | 门禁 | 主要用到的 Skill |
 |---|---|
-| 立项门 | brainstorming、project-breakdown、writing-plans |
-| 架构门 | database-design、backend-architecture-acceptance、browser-verification |
-| 业务门 | backend-security-review、frontend-security-review、requesting-code-review、testing-strategy |
-| 上线门 | testing-strategy、verification-before-completion |
+| 立项门 | brainstorming、product-validation、project-breakdown、writing-plans |
+| 架构门 | ui-design-system、database-design、api-design、backend-architecture-acceptance |
+| 业务门 | browser-verification、backend-security-review、frontend-security-review、testing-strategy、requesting-code-review |
+| 上线门 | deployment-and-ops、seo-analytics-compliance、verification-before-completion、user-feedback-iteration |
 | 全程 | systematic-debugging（调试）、verification-before-completion（每次宣布"完成"前） |
 
 ## 核心原则
@@ -94,12 +121,12 @@
 skills/ 是给 **AI** 看的规则。不复制到项目根目录，AI 在新项目里读不到，就会回到"自由发挥"模式。
 
 ```powershell
-# 在新项目根目录执行
-Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destination ".\skills\" -Recurse
+# 在新项目根目录执行（把 <知识库根目录> 换成实际路径）
+Copy-Item -Path "<知识库根目录>\skills\*" -Destination ".\skills\" -Recurse
 ```
 
 导入后在项目 `AGENT_CONSTITUTION.md` 里引用（IDE 入口文件只写一行指向宪法，不复制内容）。详见 [操作手册 0.7](../docs/AI协作全流程操作手册.md)。
 
 ---
 
-_最后更新：2026-08-17（补 frontend-security-review，11 → 12 个技能）_
+_最后更新：2026-11-02（新增 6 个工程能力技能，12 → 18 个）_

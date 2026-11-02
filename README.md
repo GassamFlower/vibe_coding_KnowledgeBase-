@@ -24,6 +24,7 @@ Vibe_Coding/
 ├── workflows/         ← 流程速查（查证用）
 ├── skills/            ← 方法论库（导入到项目用）
 ├── templates/         ← 工作台模板（PROJECT_STATUS 复制、门禁卡查看不复制）
+├── references/        ← 外部资料与 UIUX 参考库索引（对应阶段与门禁，不复制原文）
 ├── companion/         ← 工作台生成器（一键生成 AGENTS.md / PROJECT_STATUS.md）
 └── agent/             ← 工程化智能体（可自动跑流程与门禁）
 ```
@@ -32,14 +33,15 @@ Vibe_Coding/
 
 | 目录 | 内容 | 什么时候用 | 怎么用 |
 |---|---|---|---|
-| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 | **每天开发** | 只复制 PROJECT_STATUS.md；门禁卡留在知识库查看，不复制 |
-| `skills/` | 12 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
+| `templates/` | 4 张门禁卡 + PROJECT_STATUS + 模块清单 + 项目复盘 + 接手项目清单 + PRD / API 清单 / 上线检查 / 30 天迭代 | **每天开发** | 只复制 PROJECT_STATUS.md；门禁卡留在知识库查看，不复制 |
+| `skills/` | 18 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
 | `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
+| `references/` | 外部资料与 UIUX 参考库索引（章节 / 页面 → 阶段 / 门禁） | **想深入某个主题、做界面设计时** | 按阶段找外部章节与参考库页面 |
 | `companion/` | 工作台生成器（modules/ + 模板 + 生成器） | **建项目 / 换阶段时** | 跑 `main.py` 生成 AGENTS.md |
 | `agent/` | 工程化智能体（可执行层，可选） | **想自动化流程时** | 复制到 skills 目录或项目根目录 |
 
-**核心原则**：日常只碰 `templates/` 和 `skills/`；`companion/` 在切换阶段时跑一次即可；`agent/`、`docs/`、`workflows/` 偶尔翻。
+**核心原则**：日常只碰 `templates/` 和 `skills/`；`companion/` 在切换阶段时跑一次即可；`agent/`、`docs/`、`workflows/`、`references/` 偶尔翻。
 
 ---
 
@@ -54,7 +56,7 @@ Vibe_Coding/
 ├── skills/                    ← 从知识库复制
 ├── AGENT_CONSTITUTION.md      ← 项目内创建
 ├── PROJECT_STATUS.md          ← 从知识库复制
-└── docs/a-立项文档.md          ← 与 AI 讨论后生成（docs/ 下全部文档按 a-q 前缀排序，见操作手册 0.3）
+└── docs/a-立项文档.md          ← 与 AI 讨论后生成（docs/ 下全部文档按 a-r 前缀排序，见操作手册 0.3）
 ```
 
 **操作步骤**：
@@ -64,19 +66,19 @@ Vibe_Coding/
 2. **复制 skills/ 到新项目根目录**
    ```powershell
    # 在新项目根目录执行
-   Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destination ".\skills\" -Recurse
+   Copy-Item -Path "<知识库根目录>\skills\*" -Destination ".\skills\" -Recurse
    ```
    > skills 是 AI 在项目中需要遵守的方法论。复制到项目根目录，AI 才能读到。
 
 3. **复制 PROJECT_STATUS.md 到新项目根目录**
    ```powershell
-   Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\PROJECT_STATUS.md" ".\PROJECT_STATUS.md"
+   Copy-Item "<知识库根目录>\templates\PROJECT_STATUS.md" ".\PROJECT_STATUS.md"
    ```
    > 这是你的"施工日志"。每天开始工作先看它，结束就更新它。
 
 4. **打开对应门禁卡**
    - 新项目从「立项门」开始
-   - 文件位置：`e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\templates\门禁卡-立项门.md`
+   - 文件位置：`<知识库根目录>\templates\门禁卡-立项门.md`
    - 照着门禁卡的清单和 prompt 走
 
 5. **从 docs/全流程AI对话Prompt模板库.md 找对应阶段的 prompt**
@@ -142,10 +144,10 @@ Vibe_Coding/
 
 | 门禁 | 包含阶段 | 过门禁标准 |
 |---|---|---|
-| 立项门 | 立项 + 选型 + 架构设计文档 + 宪法 | 方向定死了、技术栈定了、架构设计有了、AI 有规矩了 |
-| 架构门 | 实施真源文档拆解 + 前端骨架 + 数据库 + 后端骨架 + 后端联调 + 后端验收 | 实施真源文档有了、四条线跑通了、前后端联调通了、真源文档有了 |
-| 业务门 | 业务模块开发 + 安全审查 | 功能做完了，安全过了 |
-| 上线门 | 上线前总验收 + 上线 + Skill 反哺 | 验收过了，Skill 反哺了 |
+| 立项门 | 立项 + 选型 + 架构设计文档 + 宪法 | 需求有真实证据、PRD 和范围清楚、技术方案唯一、架构设计有了、AI 有规矩了 |
+| 架构门 | 实施真源文档分解 + 前端骨架 + 数据库 + 后端骨架 + 后端联调 + 后端验收 | 设计规范、接口清单、数据库规则有了，四条线跑通了，前后端联调通了 |
+| 业务门 | 业务模块开发 + 安全审查 | 功能做完了，自动化测试和 E2E 覆盖核心路径，安全过了 |
+| 上线门 | 上线前总验收 + 上线 + 上线后观察 + Skill 反哺 | 生产冒烟通过、监控和回滚就绪、合规与统计到位、指标开始记录、Skill 反哺了 |
 
 **过门禁动作**：
 
@@ -157,25 +159,28 @@ Vibe_Coding/
 
 ---
 
-### 场景 4：项目结束（上线后）
+### 场景 4：上线后运营与项目结束
 
-**目标**：反哺知识库，让下个项目更好。
+**目标**：先用真实数据验证项目，再反哺知识库。
 
-1. **整理踩坑清单**（从 `PROJECT_STATUS.md` 的「踩坑记录」提取）
-2. **反哺 skills/**
+1. **记录上线后指标**：24 小时、7 天、30 天的访问量、错误率、响应时间、核心转化
+2. **整理用户反馈**：按缺陷 / 体验 / 功能缺失 / 误解 / 价格归类，用 RICE 排序
+3. **写 30 天迭代计划**：只保留本周能验证的 1-3 个假设（`templates/上线后30天迭代计划.md`）
+4. **整理踩坑清单**（从 `PROJECT_STATUS.md` 的「踩坑记录」提取）
+5. **反哺 skills/**
    - 哪个 Skill 没覆盖到这次的坑？→ 加规则
    - 哪个 Skill 的规则不够强？→ 强化
    - 文件位置：知识库 `skills/` 目录
-3. **反哺 Prompt 模板库**
+6. **反哺 Prompt 模板库**
    - 哪个阶段的 prompt 不好用？→ 改进
    - 缺哪个 prompt？→ 新增
    - 文件位置：`docs/全流程AI对话Prompt模板库.md`
-4. **写复盘报告**（可放进知识库 `docs/` 或项目根目录）
-5. **更新 PROJECT_STATUS.md 的「下次项目提醒」**
-6. **知识库 Git 提交**：
+7. **写复盘报告**（可放进知识库 `docs/` 或项目根目录）
+8. **更新 PROJECT_STATUS.md 的「上线信息」与「上线后指标」**
+9. **知识库 Git 提交**：
    ```powershell
-   cd e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding
-   git add skills/ docs/
+   cd <知识库根目录>
+   git add skills/ docs/ templates/ references/
    git commit -m "docs: 反哺 N 条新经验到知识库"
    git push
    ```
@@ -191,11 +196,11 @@ Vibe_Coding/
 | 信号 | 怎么用 | 什么时候靠它 |
 |---|---|---|
 | ① PROJECT_STATUS.md | 有就直接读「当前门禁 + 当前阶段」 | 最准 |
-| ② `ls docs/` 看 a-q 前缀 | **取前缀最大的那个，下一档就是当前阶段** | 最实用 |
+| ② `ls docs/` 看 a-r 前缀 | **取前缀最大的那个，下一档就是当前阶段** | 最实用 |
 | ③ 代码现状 + `git log` | 骨架能跑 → stage 7-10；有业务模块 → 12；线上能访问 → 14-15 | 无文档时 |
 | ④ 门禁反推 | 拿门禁卡**倒着验**，卡在哪道门过不全就停在哪道门内 | 兜底（永远可用） |
 
-**stage → 门禁速查**（此处是生成器编号 stage 1-15，与手册正文的 14 阶段模型偏移 +1，对照规则见 [操作手册 0.8](docs/AI协作全流程操作手册.md)）：1-5 = 立项门；6-11 = 架构门；12-13 = 业务门；14-15 = 上线门。
+**stage → 门禁速查**（此处是生成器编号 stage 1-15，与手册正文的 14 阶段模型相差 +1，对照规则见 [操作手册 0.8](docs/AI协作全流程操作手册.md)）：1-5 = 立项门；6-11 = 架构门；12-13 = 业务门；14-15 = 上线门。
 
 **文档残缺时怎么办**（半路项目常态）：①②③ 只是"快线索"不是必要条件，缺了就往后退，最终裁决永远是 ④ 门禁反推——它只依赖**运行时验证**（能不能跑、有没有业务功能），与文档完备度无关。最小路径：
 
@@ -235,7 +240,7 @@ skills/ 里的方法论是给 **AI** 看的规则。不复制到项目根目录�
 ```powershell
 # 在新项目根目录执行
 mkdir skills
-Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destination ".\skills\" -Recurse
+Copy-Item -Path "<知识库根目录>\skills\*" -Destination ".\skills\" -Recurse
 ```
 
 **方式 2：按需导入（轻量项目）**
@@ -244,8 +249,8 @@ Copy-Item -Path "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\*" -Destin
 ```powershell
 # 比如只导入调试和验收两个
 mkdir skills
-Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\systematic-debugging.md" ".\skills\"
-Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-before-completion.md" ".\skills\"
+Copy-Item "<知识库根目录>\skills\systematic-debugging.md" ".\skills\"
+Copy-Item "<知识库根目录>\skills\verification-before-completion.md" ".\skills\"
 ```
 
 ### 导入后怎么让 AI 知道
@@ -272,22 +277,28 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 入口文件只写一行引用宪法，不复制内容（避免多处不同步）。
 
-### 12 个 Skill 的用途
+### 18 个 Skill 的用途
 
 | Skill 文件 | 什么时候用 |
 |---|---|
 | `brainstorming.md` | 头脑风暴、需求挖掘 |
-| `writing-plans.md` | 写开发计划、模块拆分 |
-| `project-breakdown.md` | 立项后拆功能清单（按角色/流程/模块三维度） |
+| `product-validation.md` | 把想法变成有证据的需求，写 PRD 和 Out-of-Scope |
+| `project-breakdown.md` | 立项后分解功能清单（按角色/流程/模块三维度） |
+| `writing-plans.md` | 写开发计划、模块划分 |
+| `ui-design-system.md` | 定风格、设计 token、组件库、响应式与页面状态 |
+| `database-design.md` | 设计数据库（含索引 / 事务 / 迁移 / 备份） |
+| `api-design.md` | 设计接口清单、响应格式、错误码、分页、幂等 |
 | `systematic-debugging.md` | 系统化调试 Bug |
-| `testing-strategy.md` | 业务模块完成后、宣布完成前的测试六步法 |
+| `testing-strategy.md` | 业务模块完成后、宣布完成前的测试六步法与自动分层 |
 | `verification-before-completion.md` | 宣布"完成"之前必走（在 testing-strategy 之后） |
 | `requesting-code-review.md` | 代码审查 |
 | `browser-verification.md` | 浏览器验证前端 |
-| `database-design.md` | 设计数据库 |
 | `backend-architecture-acceptance.md` | 后端架构验收 |
-| `backend-security-review.md` | 后端安全审查 |
+| `backend-security-review.md` | 后端安全审查（含认证、密钥、跨域、限流、依赖） |
 | `frontend-security-review.md` | 前端安全审查（XSS / CSRF / 敏感信息 / 依赖 / 构建） |
+| `deployment-and-ops.md` | 部署上线、域名、HTTPS、监控、回滚 |
+| `seo-analytics-compliance.md` | SEO、分享卡片、统计、隐私政策与备案 |
+| `user-feedback-iteration.md` | 上线后反馈收集、RICE 排序、指标与灰度迭代 |
 
 ---
 
@@ -295,7 +306,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 ### Prompt 资源
 
-**`docs/全流程AI对话Prompt模板库.md`**：包含 4 个通用模板（第 0 部分，其中追问模板有 6 种场景）+ 50 个按阶段组织的 prompt 模板（第 1-11 部分）+ 9 条异常处理话术（第 12 部分）
+**`docs/全流程AI对话Prompt模板库.md`**：包含 4 个通用模板（第 0 部分，其中追问模板有 6 种场景）+ 61 个按阶段组织的 prompt 模板（第 1-11 部分）+ 9 条异常处理话术（第 12 部分）
    - 用于：进入某个阶段时批量取用
    - 用法：翻到对应阶段部分，复制 prompt
 
@@ -304,13 +315,13 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | 类型 | 用在 | 特征 |
 |---|---|---|
 | 🗣️ 挖掘型 | 对话挖掘期 | 让 AI 反问、补盲区、给判断 |
-| ⚡ 执行型 | 执行交付期 | 范围锁死、验收前置 |
+| ⚡ 执行型 | 执行交付期 | 范围限定、验收前置 |
 | ✅ 验收型 | 验收固化期 | 禁止模糊词、要证据 |
 
 ### 使用步骤
 
 1. **判断当前在哪个阶段**（看 `PROJECT_STATUS.md` 的当前门禁）
-2. **从对应门禁卡复制 prompt**（每道门精选 3-5 个最常用：立项门 5、架构门 5、业务门 3、上线门 4）
+2. **从对应门禁卡复制 prompt**（每道门精选 5-7 个最常用：立项门 6、架构门 6、业务门 5、上线门 7）
 3. **需要更多 prompt 时**，翻 `docs/全流程AI对话Prompt模板库.md` 对应部分
 4. **替换 `[方括号]` 内容**为你的实际情况
 5. **发给 AI**
@@ -338,7 +349,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 
 ## Templates 怎么用
 
-### 8 个模板文件
+### 12 个模板文件
 
 | 模板 | 用途 | 用法 |
 |---|---|---|
@@ -347,25 +358,31 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | `门禁卡-架构门.md` | 架构门操作清单 | 进入架构门时翻 |
 | `门禁卡-业务门.md` | 业务门操作清单 | 进入业务门时翻 |
 | `门禁卡-上线门.md` | 上线门操作清单 | 进入上线门时翻 |
+| `立项文档PRD模板.md` | 需求验证与 PRD | 立项阶段与 AI 讨论后填写 |
+| `API接口清单模板.md` | 接口清单 | 架构门输出，前后端共用 |
+| `上线检查清单.md` | 上线逐项检查 | 上线门执行，每项留证据 |
+| `上线后30天迭代计划.md` | 上线后反馈与迭代 | 上线后 30 天维护 |
 | `项目复盘模板.md` | 项目复盘模板 | 项目上线后填写，反哺 Skill 库的依据 |
 | `模块清单模板.md` | 模块清单 | 业务门期间维护，跟踪已完成/正在开发/待开发模块 |
 | `接手项目第一天操作清单.md` | 接手项目检查清单 | 接手项目或项目状态不清时使用 |
 
-### PROJECT_STATUS.md 的 7 个区域
+### PROJECT_STATUS.md 的 9 个区域
 
 1. **项目信息**：项目名、开始日期、当前门禁
-2. **当前门禁**：正在过哪个门、什么时候进入的
-3. **验收清单**：从门禁卡复制，逐项勾选
-4. **下一步**：当前要做的不超过 3 件事
-5. **工作日志**：每天一行，做了什么、问题
-6. **规则变更记录**：每次改真源文档 / 宪法时记录
-7. **踩坑记录**：每次踩坑时记录，项目结束时反哺 Skill
+2. **上线信息**：访问地址、部署平台、版本、部署时间、部署/回滚命令、监控、统计
+3. **当前门禁**：正在过哪个门、什么时候进入的
+4. **验收清单**：从门禁卡复制，逐项勾选
+5. **下一步**：当前要做的不超过 3 件事
+6. **上线后指标**：24 小时 / 7 天 / 30 天的关键指标
+7. **工作日志**：每天一行，做了什么、问题
+8. **规则变更记录**：每次改真源文档 / 宪法时记录
+9. **踩坑记录**：每次踩坑时记录，项目结束时反哺 Skill
 
 ### 门禁卡的 5 个区域
 
-1. **过门禁标准**：硬指标（必须全勾才能过门禁）
+1. **过门禁标准**：必须满足的指标（必须全勾才能过门禁）
 2. **验收清单**：详细检查项
-3. **常用 Prompt**：本门最常用的 3-5 个 prompt（直接复制用）
+3. **常用 Prompt**：本门最常用的 5-7 个 prompt（直接复制用）
 4. **常见遗漏项**：踩坑提醒
 5. **配套文档链接**：需要详细操作时翻
 
@@ -378,7 +395,7 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 | **何时用** | 项目上线后，进入第 14 阶段（上线 + Skill 反哺）时 |
 | **谁主导** | 你主导，AI 辅助整理 |
 | **怎么用** | 让 AI 按模板结构输出复盘内容：Keep / Change / Add / 踩坑清单 / 下次提醒 |
-| **跟随流程** | 手册第 14 章 → 沉淀落地期 → 按模板填写 → 反哺 Skill 库 → Git 提交 |
+| **跟随流程** | 手册第 14 章 → 沉淀成文期 → 按模板填写 → 反哺 Skill 库 → Git 提交 |
 | **存放位置** | 项目根目录 `docs/q-项目复盘报告.md`（不复制到新项目） |
 | **核心要求** | 每条新增规则必须标注来源：`[日期] 规则描述 — 来源：XX 项目 XX 阶段 XX 问题` |
 
@@ -420,14 +437,14 @@ Copy-Item "e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding\skills\verification-bef
 ```bash
 python companion/generator/main.py --project <你的项目目录> --stage 1
 ```
-`--stage` 支持 **1-15 全流程**（1-5 立项门 / 6-11 架构门 / 12-13 业务门 / 14-15 上线门），抵达门禁阶段（5/11/13/15）时会自动把对应 gate 模块的硬指标注入 `AGENTS.md`。
+`--stage` 支持 **1-15 全流程**（1-5 立项门 / 6-11 架构门 / 12-13 业务门 / 14-15 上线门），抵达门禁阶段（5/11/13/15）时会自动把对应 gate 模块的必须满足指标注入 `AGENTS.md`。
 生成的 `AGENTS.md` 已自带「成本与心力（每次会话都注意）」段——这是把"上下文膨胀 / 心力消耗"管理做成**横切层（cross）**自动注入每个阶段，不用你每阶段手动加。Go 版（`generator/main.go`）用于接入你的 DC Ops 后端。
 
 ### agent/ — 工程化智能体（可选）
 
 `agent/` 是知识库的**可执行层**：把静态方法论固化成能"自动跑流程 + 自动收证据 + 自动判门禁"的智能体（`SKILL.md` 为主入口）。当前 **v0.4.0 已实现全量 4 门禁完整闭环**：
 - **立项门**：立项 → 选型 → 架构设计 → 宪法 → 自动验收
-- **架构门**：真源文档拆解 → 前端/数据库/后端骨架 → 联调 → 架构验收 → 自动验收
+- **架构门**：真源文档分解 → 前端/数据库/后端骨架 → 联调 → 架构验收 → 自动验收
 - **业务门**：业务模块开发（多轮）→ 安全审查 → 自动验收
 - **上线门**：上线前总验收 → 上线 → Skill 反哺 → 自动验收
 - 对应 `gate-checks/`（4 道门禁自动验收）+ `workflows/`（4 个闭环流程）+ `state-machine.md`（状态流转）
@@ -479,9 +496,9 @@ python companion/generator/main.py --project <你的项目目录> --stage 1
 │      全过才进入下一个门禁
 │
 ├─ 项目上线了？
-│   └─ 整理踩坑清单
-│      反哺 skills/ 和 Prompt 模板库
-│      知识库 git push
+│   └─ 记录 24 小时 / 7 天 / 30 天指标
+│      登记并归类用户反馈，用 RICE 排序
+│      写 30 天迭代计划，反哺 skills/ 和 Prompt 模板库
 │
 └─ 不知道在哪个阶段？
     └─ 翻 docs/AI协作全流程操作手册.md 0.8（4 信号定位 stage）
@@ -513,13 +530,19 @@ python companion/generator/main.py --project <你的项目目录> --stage 1
 | **第一次用这套知识库** | [使用教程与导航手册](docs/使用教程与导航手册.md) |
 | 判断项目处于什么状态 | [项目可视化流程手册](docs/项目可视化流程手册.md) |
 | 查某个阶段的详细操作 | [AI协作全流程操作手册](docs/AI协作全流程操作手册.md) |
-| 查项目文档该叫什么名（a-q 前缀） | [操作手册 0.3](docs/AI协作全流程操作手册.md) |
+| 查项目文档该叫什么名（a-r 前缀） | [操作手册 0.3](docs/AI协作全流程操作手册.md) |
 | 查生成器 / 智能体怎么用 | [操作手册 0.5](docs/AI协作全流程操作手册.md) |
 | PROJECT_STATUS.md 每天怎么维护 | [操作手册 0.6](docs/AI协作全流程操作手册.md) |
 | 新项目该复制什么进项目 | [操作手册 0.7](docs/AI协作全流程操作手册.md) |
 | 接手半路项目怎么定位阶段 | [操作手册 0.8](docs/AI协作全流程操作手册.md) |
 | 找可直接复制的 prompt | [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) |
 | 查某个阶段的快速步骤 | [全流程速查](workflows/全流程速查.md) |
+| 想深入某个主题（外部资料） | [外部资料索引](references/VibeVibe工程手册索引.md) |
+| 做界面设计 / 定 UI 规范 | [UIUX 参考库索引](references/UIUX参考库索引.md) |
+| 写立项文档 / PRD | [立项文档PRD模板](templates/立项文档PRD模板.md) |
+| 写接口清单 | [API接口清单模板](templates/API接口清单模板.md) |
+| 准备上线 | [上线检查清单](templates/上线检查清单.md) |
+| 上线后做迭代 | [上线后30天迭代计划](templates/上线后30天迭代计划.md) |
 | 看某个 Skill 的方法论 | [skills/ 目录](skills/) |
 | 项目复盘反哺 | [项目复盘模板](templates/项目复盘模板.md) |
 | 接手项目或状态不清 | [接手项目第一天操作清单](templates/接手项目第一天操作清单.md) |
@@ -531,7 +554,7 @@ python companion/generator/main.py --project <你的项目目录> --stage 1
 知识库本身用 Git 管理。每次反哺 Skill / Prompt 后提交：
 
 ```powershell
-cd e:\FiveTierProjectSystem\01-Inbox\Vibe_Coding
+cd <知识库根目录>
 git add skills/ docs/
 git commit -m "docs: 反哺 N 条新经验"
 git push
