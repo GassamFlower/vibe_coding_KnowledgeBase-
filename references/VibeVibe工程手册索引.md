@@ -18,6 +18,8 @@
 
 ## 一、进阶篇（Advanced，16 章）对照
 
+16 章的逐章核心、关键做法、81 个子页要点与延伸页见 [VibeVibe进阶篇索引](VibeVibe进阶篇索引.md)。
+
 | 章节 | 标题 | 对应阶段 | 对应门禁 | 对应 Skill / 模板 |
 |---|---|---|---|---|
 | [01](https://www.vibevibe.cn/zh/Advanced/01-environment-setup/) | 环境搭建与代码运行基础 | 阶段 2 技术选型 | 立项门 | `docs/AI协作全流程操作手册.md`（技术选型与运行环境） |
@@ -41,20 +43,26 @@
 
 ## 二、入门篇（Basic）对照
 
+10 个页面的逐章核心、关键做法、36 个子页要点见 [VibeVibe入门篇索引](VibeVibe入门篇索引.md)。
+
 | 章节 | 标题 | 适用场景 |
 |---|---|---|
 | [00](https://www.vibevibe.cn/zh/Basic/00-preface/) | 开始前：你会做出什么，怎么学，卡住怎么办 | 第一次接触 Vibe Coding 的学习路径 |
 | [01](https://www.vibevibe.cn/zh/Basic/01-awakening/) | 第一个版本：2 小时做出个人主页与数字分身 | 建立"先做出一个能跑的东西"的信心 |
-| [02](https://www.vibevibe.cn/zh/Basic/02-mindset/) | 带回自己的工作台：从平台到本地 | 阶段 0-2 的心态与工作方式 |
+| [02](https://www.vibevibe.cn/zh/Basic/02-mindset/) | 带回自己的工作台：从平台到本地 | 阶段 1-2 的心态与工作方式 |
 | [03](https://www.vibevibe.cn/zh/Basic/03-technique/) | 做好第一印象：界面、风格与更有效的需求表达 | 阶段 1 需求表达、阶段 6 视觉方向 |
 | [04](https://www.vibevibe.cn/zh/Basic/04-practice-0-to-1/) | 让主页更完整：内容、引导与基础存档 | 阶段 11 业务模块的第一轮实践 |
 | [05](https://www.vibevibe.cn/zh/Basic/05-advanced/) | 让数字分身更像你：人设、回答与排错 | AI 配置与调试入门 |
 | [06](https://www.vibevibe.cn/zh/Basic/06-launch/) | 正式上线：部署、分享与第一轮真实反馈 | 阶段 14 上线与首批反馈 |
 | [99](https://www.vibevibe.cn/zh/Basic/99-appendix/) | 附录（提示词汇总等） | Prompt 速查 |
+| [100](https://www.vibevibe.cn/zh/Basic/100-epilogue/) | 结语：给未来的你 | 第一次闭环收束与下一步选择 |
+| [101](https://www.vibevibe.cn/zh/Basic/101-next-part/) | 下部预告：Vibe Coding 前后端实战教程 | 从入门篇进入进阶篇的能力地图 |
 
 ---
 
 ## 三、实践案例篇（Practice）对照
+
+5 篇的标题、项目背景、核心做法、要点与适用阶段见 [VibeVibe实践案例索引](VibeVibe实践案例索引.md)。
 
 | 案例 | 适用场景 |
 |---|---|
@@ -67,6 +75,8 @@
 ---
 
 ## 四、文章篇（Articles，6 类）对照
+
+41 篇的标题、核心论点、要点与适用阶段见 [VibeVibe优质文章索引](VibeVibe优质文章索引.md)。
 
 | 分类 | 标题 | 适用场景 |
 |---|---|---|

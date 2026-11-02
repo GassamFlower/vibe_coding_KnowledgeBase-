@@ -23,7 +23,7 @@
 | `workflows/全流程速查.md` | 每个阶段的"核心步骤→完成判定→反模式" | 快速回顾某阶段 |
 | `skills/` | 18 个 Skill 方法论（给 AI 的规则） | 项目启动时复制进项目 |
 | `templates/` | 4 张门禁卡 + PROJECT_STATUS + 7 份项目文档模板 | 建工作台 / 过门禁 |
-| `references/` | 外部资料与 UIUX 参考库索引（页面 / 章节 → 阶段与门禁，只写摘要与链接） | 想深入某个主题、做界面设计时 |
+| `references/` | 外部资料索引与 UIUX 参考库索引；入口见 `references/README.md`（6 份索引的分工与阶段读法） | 想深入某个主题、查案例复盘、做界面设计时 |
 | `companion/` | 工作台生成器（AGENTS.md 等） | 自动化生成工作台 |
 | `agent/` | 工程化智能体（自动跑流程与门禁） | 想自动化时 |
 
@@ -39,7 +39,7 @@
 
 | 概念 | 唯一真源 | 派生 / 消费方 |
 |---|---|---|
-| **项目状态判断**（状态 0-4 决策树） | `docs/项目可视化流程手册.md` 第 1 章 | README「项目状态速查」；教程 4.2 引用可视化手册决策树（2026-09-17 收敛），其余状态流程为展示段落 |
+| **项目状态判断**（状态 0-4 决策树） | `docs/项目可视化流程手册.md` 第 1 章 | README「项目状态速查」；教程 4.2 引用可视化手册决策树（2026-09-17 收敛），其余状态流程为展示内容 |
 | **阶段模型（阶段 1-14 + 4 门禁归属）** | `docs/AI协作全流程操作手册.md` 第 1-14 章 | `workflows/全流程速查.md`、教程「全景脑图」 |
 | **4 道门禁的过门标准 / 验收清单** | `templates/门禁卡-*.md` | `agent/gate-checks/`（机器执行版）、`companion/modules/gate-*.md`（生成器注入版）、README 门禁表 |
 | **需求验证与 PRD** | `skills/product-validation.md` | `templates/立项文档PRD模板.md`、`templates/门禁卡-立项门.md`「需求验证与 PRD」 |
@@ -51,8 +51,9 @@
 | **部署与运维** | `skills/deployment-and-ops.md` | `templates/上线检查清单.md`、`templates/门禁卡-上线门.md`「上线准备 / 上线执行」 |
 | **SEO、统计与合规** | `skills/seo-analytics-compliance.md` | `templates/门禁卡-上线门.md`「SEO 与运营」 |
 | **上线后反馈与迭代** | `skills/user-feedback-iteration.md` | `templates/上线后30天迭代计划.md`、`templates/PROJECT_STATUS.md`「上线后指标」 |
-| **外部资料对应关系** | `references/VibeVibe工程手册索引.md` | README「配套文档导航」 |
-| **Skill 方法论**（18 个，AI 规则） | `skills/*.md`（每技能一份） | `skills/README.md`（索引）、手册中的讲解段落（面向人，允许） |
+| **外部资料对应关系**（章节 / 页面 / 文章 / 案例 → 阶段与门禁） | `references/VibeVibe工程手册索引.md` | `references/README.md`（6 份索引的分工与阶段读法）、README「配套文档导航」 |
+| **外部资料逐章与逐篇摘要** | `references/VibeVibe入门篇索引.md`（10 页）、`references/VibeVibe进阶篇索引.md`（16 章）、`references/VibeVibe优质文章索引.md`（41 篇）、`references/VibeVibe实践案例索引.md`（5 篇） | README 导航表、`docs/使用教程与导航手册.md` 导航表、`agent/references/README.md`（只引用不复制） |
+| **Skill 方法论**（18 个，AI 规则） | `skills/*.md`（每技能一份） | `skills/README.md`（索引）、手册中的讲解内容（面向人，允许） |
 | **Prompt 模板** | `docs/全流程AI对话Prompt模板库.md` | 各门禁卡「常用 Prompt」（精选引用）；教程 2.4/2.7/3.3 已改为引用模板库对应节（2026-09-17 收敛） |
 | **工作台三件套定义**（PROJECT_STATUS / 宪法 / 真源文档） | `docs/AI协作全流程操作手册.md` 第 0.3-0.8 节 | `templates/PROJECT_STATUS.md`、教程第 5.3 节 |
 | **模板文件本身** | `templates/` | 使用者复制到项目 |

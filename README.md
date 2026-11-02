@@ -24,7 +24,7 @@ Vibe_Coding/
 ├── workflows/         ← 流程速查（查证用）
 ├── skills/            ← 方法论库（导入到项目用）
 ├── templates/         ← 工作台模板（PROJECT_STATUS 复制、门禁卡查看不复制）
-├── references/        ← 外部资料与 UIUX 参考库索引（对应阶段与门禁，不复制原文）
+├── references/        ← 引用资料索引（入口 references/README.md）与 UIUX 参考库索引（对应阶段与门禁，不复制原文）
 ├── companion/         ← 工作台生成器（一键生成 AGENTS.md / PROJECT_STATUS.md）
 └── agent/             ← 工程化智能体（可自动跑流程与门禁）
 ```
@@ -37,7 +37,7 @@ Vibe_Coding/
 | `skills/` | 18 个 Skill 方法论 | **项目启动时** | 复制到新项目根目录，在 Agent 宪法里引用 |
 | `docs/` | 4 篇深度手册（含教程、操作手册、Prompt 模板库） | **遇到盲区时** | 翻对应章节查证 |
 | `workflows/` | 1 篇全流程速查 | **回顾流程时** | 查某个阶段的快速步骤 |
-| `references/` | 外部资料与 UIUX 参考库索引（章节 / 页面 → 阶段 / 门禁） | **想深入某个主题、做界面设计时** | 按阶段找外部章节与参考库页面 |
+| `references/` | 引用资料索引（入口 `references/README.md`，6 份索引分工与阶段读法）与 UIUX 参考库索引（章节 / 文章 / 案例 / 页面 → 阶段 / 门禁） | **想深入某个主题、查案例复盘、做界面设计时** | 按阶段找外部章节、逐章与逐篇摘要、参考库页面 |
 | `companion/` | 工作台生成器（modules/ + 模板 + 生成器） | **建项目 / 换阶段时** | 跑 `main.py` 生成 AGENTS.md |
 | `agent/` | 工程化智能体（可执行层，可选） | **想自动化流程时** | 复制到 skills 目录或项目根目录 |
 
@@ -537,7 +537,11 @@ python companion/generator/main.py --project <你的项目目录> --stage 1
 | 接手半路项目怎么定位阶段 | [操作手册 0.8](docs/AI协作全流程操作手册.md) |
 | 找可直接复制的 prompt | [全流程AI对话Prompt模板库](docs/全流程AI对话Prompt模板库.md) |
 | 查某个阶段的快速步骤 | [全流程速查](workflows/全流程速查.md) |
-| 想深入某个主题（外部资料） | [外部资料索引](references/VibeVibe工程手册索引.md) |
+| 想深入某个主题（外部资料） | [引用资料索引](references/README.md)（6 份索引的分工与阶段读法） |
+| 第一次做项目 / 查入门篇逐节做法（10 页 / 36 子页） | [VibeVibe 入门篇索引](references/VibeVibe入门篇索引.md) |
+| 查进阶篇逐章细节（16 章 / 81 子页） | [VibeVibe 进阶篇索引](references/VibeVibe进阶篇索引.md) |
+| 查优质文章逐篇摘要（41 篇） | [VibeVibe 优质文章索引](references/VibeVibe优质文章索引.md) |
+| 看完整项目案例复盘（5 篇） | [VibeVibe 实践案例索引](references/VibeVibe实践案例索引.md) |
 | 做界面设计 / 定 UI 规范 | [UIUX 参考库索引](references/UIUX参考库索引.md) |
 | 写立项文档 / PRD | [立项文档PRD模板](templates/立项文档PRD模板.md) |
 | 写接口清单 | [API接口清单模板](templates/API接口清单模板.md) |

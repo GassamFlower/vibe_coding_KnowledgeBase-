@@ -2,7 +2,7 @@
 
 本目录不复制手册内容，而是引用知识库的 `../../docs/` 目录。
 
-## 引用的 4 篇手册 + 2 份索引
+## 引用的 4 篇手册、6 份索引与引用层入口
 
 | 手册文件 | 用途 |
 |---|---|
@@ -10,10 +10,15 @@
 | `../../docs/项目可视化流程手册.md` | 判断项目处于什么状态 |
 | `../../docs/AI协作全流程操作手册.md` | 查某个阶段的详细操作细则（第 0-17 章） |
 | `../../docs/全流程AI对话Prompt模板库.md` | 找可直接复制的 prompt |
+| `../../references/README.md` | 先判断该翻哪份索引：6 份索引的分工与 14 阶段读法 |
 | `../../references/VibeVibe工程手册索引.md` | 按阶段查找外部工程手册章节（PRD / 设计 / API / 数据库 / 测试 / 部署 / SEO / 运营） |
+| `../../references/VibeVibe入门篇索引.md` | 按页面查找 10 页入门教程的核心做法、36 个子页要点与适用阶段 |
+| `../../references/VibeVibe进阶篇索引.md` | 按章节查找 16 章的核心做法、81 个子页要点与延伸页 |
+| `../../references/VibeVibe优质文章索引.md` | 按主题查找 41 篇优质文章的摘要、要点与适用阶段 |
+| `../../references/VibeVibe实践案例索引.md` | 按项目类型查找 5 篇完整案例的做法、步骤与适用阶段 |
 | `../../references/UIUX参考库索引.md` | 按阶段查找 UIUX 参考库页面（风格 / token / 组件 / 页面状态 / 套路 / 效果） |
 
-## 为什么用引用而不是复制
+## 引用与复制的差别
 
 1. **单一来源**：知识库 docs/ 是唯一来源，避免多处不同步
 2. **自动继承**：知识库 docs/ 更新时，agent 自动继承
@@ -30,5 +35,5 @@
 
 如果把 agent/ 移植到其他环境：
 1. 把 `../../docs/` 的 4 个文件复制到本目录
-2. 把 `../../references/VibeVibe工程手册索引.md` 与 `../../references/UIUX参考库索引.md` 复制到本目录
+2. 把 `../../references/VibeVibe工程手册索引.md`、`../../references/VibeVibe入门篇索引.md`、`../../references/VibeVibe进阶篇索引.md`、`../../references/VibeVibe优质文章索引.md`、`../../references/VibeVibe实践案例索引.md` 与 `../../references/UIUX参考库索引.md` 复制到本目录
 3. 或者只复制需要的章节（按门禁组织）
